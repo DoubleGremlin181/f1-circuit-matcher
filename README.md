@@ -24,6 +24,13 @@ npm run dev
 
 The site is automatically deployed to GitHub Pages at [circuit-sketch.kavi.sh](https://circuit-sketch.kavi.sh/) on every push to the main branch.
 
+**⚠️ First-time setup required:** To enable deployment, you must configure GitHub Pages in repository settings. See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions.
+
+**Quick setup:**
+1. Go to Settings → Pages
+2. Set "Source" to **GitHub Actions** (not "Deploy from a branch")
+3. Push to main branch to trigger deployment
+
 ## Data Management
 
 Circuit layouts and Wikipedia data are stored locally in `src/data/` and updated monthly via GitHub Actions.
