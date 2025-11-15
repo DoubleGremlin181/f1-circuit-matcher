@@ -2,6 +2,16 @@
 
 This document explains how to deploy Circuit Sketch to GitHub Pages with a custom domain.
 
+## ⚠️ CRITICAL FIRST STEP
+
+**Before the deployment will work, you MUST configure GitHub Pages in your repository settings:**
+
+1. Go to https://github.com/DoubleGremlin181/f1-circuit-matcher/settings/pages
+2. Under "Build and deployment" > "Source": Select **GitHub Actions** (NOT "Deploy from a branch")
+3. Click Save
+
+Without this configuration, the deployment workflow will fail with a 404 error, even though the workflow appears to run successfully.
+
 ## Prerequisites
 
 - Repository is public or you have GitHub Pages enabled for private repos
@@ -11,10 +21,12 @@ This document explains how to deploy Circuit Sketch to GitHub Pages with a custo
 
 ### 1. Enable GitHub Pages
 
-1. Go to your repository settings
+**This is the most important step - the deployment will not work without it.**
+
+1. Go to your repository settings: https://github.com/DoubleGremlin181/f1-circuit-matcher/settings/pages
 2. Navigate to "Pages" in the left sidebar
 3. Under "Build and deployment":
-   - Source: GitHub Actions
+   - **Source: GitHub Actions** (This is crucial!)
 4. The workflow will automatically deploy on pushes to `main`
 
 ### 2. Configure Custom Domain
@@ -61,27 +73,54 @@ You can manually trigger a deployment:
 
 ## Verify Deployment
 
-After deployment:
-1. Check the Actions tab for workflow status
-2. Visit https://circuit-sketch.kavi.sh/
-3. Verify the site loads correctly
+### Step 1: Check Workflow Status
+1. Go to https://github.com/DoubleGremlin181/f1-circuit-matcher/actions
+2. Look for the "Deploy to GitHub Pages" workflow
+3. Verify it shows a green checkmark (✓) for the latest run
+4. If it shows a red X (✗), click on it to see the error logs
+
+### Step 2: Confirm GitHub Pages is Active
+1. Go to https://github.com/DoubleGremlin181/f1-circuit-matcher/settings/pages
+2. You should see "Your site is live at https://circuit-sketch.kavi.sh/"
+3. If you see "Your site is ready to be published", the Pages setting is not configured correctly
+
+### Step 3: Test the Live Site
+1. Visit https://circuit-sketch.kavi.sh/
+2. The page should load the Circuit Sketch application
+3. Try drawing a shape to verify functionality
 
 ## Troubleshooting
 
-### DNS Not Resolving
+### ❌ "404 - File not found" Error in Workflow
+
+**Cause:** GitHub Pages source is not set to "GitHub Actions"
+
+**Solution:**
+1. Go to https://github.com/DoubleGremlin181/f1-circuit-matcher/settings/pages
+2. Under "Build and deployment" > "Source"
+3. Change from "Deploy from a branch" to **"GitHub Actions"**
+4. Re-run the workflow: Actions → Deploy to GitHub Pages → Re-run jobs
+
+### ❌ Workflow Succeeds but Site Shows 404
+
+**Cause:** GitHub Pages is not enabled or misconfigured
+
+**Solution:**
+1. Verify Pages is enabled at Settings > Pages
+2. Confirm "Source" is set to "GitHub Actions"
+3. Check if the repository is public (or you have GitHub Pages for private repos)
+4. Wait 1-2 minutes after the workflow completes, then refresh
+
+### ⚠️ DNS Not Resolving
 - Wait up to 24 hours for DNS propagation
 - Use `dig circuit-sketch.kavi.sh` to check DNS records
 - Verify kavi.sh DNS is properly configured
 
-### 404 Errors
-- Ensure GitHub Pages source is set to "GitHub Actions"
-- Check that the deploy workflow completed successfully
-- Verify CNAME file exists in the deployment
-
-### Custom Domain Not Working
+### ⚠️ Custom Domain Not Working
 - Check repository Settings > Pages for any warnings
 - Ensure CNAME file contains: `circuit-sketch.kavi.sh`
 - Try removing and re-adding the custom domain in settings
+- Verify DNS CNAME record points to: `doublegremlin181.github.io`
 
 ## Monthly Data Updates
 
