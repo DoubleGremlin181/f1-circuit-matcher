@@ -69,7 +69,7 @@ A web application that challenges users to draw shapes that match Formula 1 circ
 - **No match found**: Show "No close match" message with encouragement to try again
 - **Touch palm rejection**: Prevent accidental touches from registering as drawing input
 - **Rapid redrawing**: Debounce matching algorithm to prevent performance issues
-- **Data storage**: Circuit layouts and Wikipedia facts stored locally in repository as static JSON files, scraper script available to update data when needed, no live API calls or external loading during app runtime
+- **Data storage**: Circuit layouts and Wikipedia facts stored locally in repository as static JSON files (generated via `scripts/fetch-circuits.ts` and `scripts/scrape-wikipedia.ts`), no live API calls or external loading during app runtime
 
 ## Design Direction
 

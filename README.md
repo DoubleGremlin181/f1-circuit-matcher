@@ -17,7 +17,11 @@ All data is stored locally in the repository for instant access and offline capa
 
 ### Circuit Layouts
 
-Circuit layouts are dynamically loaded from the [bacinger/f1-circuits](https://github.com/bacinger/f1-circuits) repository on app startup. The GeoJSON data is parsed and normalized for shape matching.
+Circuit layouts are downloaded ahead of time from the
+[bacinger/f1-circuits](https://github.com/bacinger/f1-circuits) repository and
+saved to `src/data/circuits.json`. The `scripts/fetch-circuits.ts` helper pulls the
+latest GeoJSON bundle, normalizes each layout into 0-1 coordinates, and writes the
+result to disk so the UI never has to hit the network.
 
 ### Wikipedia Data
 
@@ -28,19 +32,22 @@ Wikipedia facts and statistics are **pre-scraped and stored locally** in `src/da
 - ✅ Ensures consistent data during user sessions
 - ✅ Improves app performance significantly
 
-### Updating Wikipedia Data
+### Updating Local Data
 
-To refresh Wikipedia data with the latest information:
+Refresh both the circuit layouts and Wikipedia stats with one command:
 
 ```bash
-# Install tsx if needed
-npm install -g tsx
-
-# Run the scraper
-tsx scripts/scrape-wikipedia.ts
+npm run data:pull
 ```
 
-See `scripts/README.md` for more details about the scraper.
+Individual scripts are also available:
+
+```bash
+npm run data:circuits     # Updates src/data/circuits.json
+npm run data:wikipedia    # Updates src/data/wikipedia-data.json
+```
+
+See `scripts/README.md` for more details about each script.
 
 ### Adding New Circuits
 

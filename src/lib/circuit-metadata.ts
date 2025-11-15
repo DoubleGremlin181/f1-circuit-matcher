@@ -1,12 +1,12 @@
-import { Circuit } from './circuits'
-import wikipediaData from '@/data/wikipedia-data.json'
-
-interface WikipediaData {
-  facts: string[]
+export interface CircuitMetadata {
+  name: string
+  location: string
+  country: string
   length?: string
-  lapRecord?: string
-  firstGP?: string
   corners?: number
+  firstGP?: string
+  facts?: string[]
+  lapRecord?: string
   totalRaces?: number
   yearRange?: string
   mostWins?: {
@@ -15,40 +15,8 @@ interface WikipediaData {
   }
 }
 
-interface GeoJSONGeometry {
-  type: string
-  coordinates: number[][] | number[][][]
-}
-
-interface GeoJSONFeature {
-  type: string
-  properties: {
-    Name?: string
-    name?: string
-    [key: string]: any
-  }
-  geometry: GeoJSONGeometry
-}
-
-interface GeoJSONCollection {
-  type: string
-  features: GeoJSONFeature[]
-}
-
-interface CircuitBasicInfo {
-  name: string
-  location: string
-  country: string
-}
-
-const GITHUB_API_BASE = 'https://api.github.com/repos/bacinger/f1-circuits/contents/circuits'
-
-const circuitBasicInfo: Record<string, CircuitBasicInfo & { 
-  length?: string
-  corners?: number
-  firstGP?: string
-  facts?: string[]
-}> = {
+// Fallback metadata used when Wikipedia data is incomplete.
+const baseMetadata: Record<string, CircuitMetadata> = {
   'albert-park': {
     name: 'Albert Park Circuit',
     location: 'Melbourne, Australia',
@@ -415,188 +383,22 @@ const circuitBasicInfo: Record<string, CircuitBasicInfo & {
   }
 }
 
-function projectTo2D(lon: number, lat: number, bounds: { minLon: number; maxLon: number; minLat: number; maxLat: number }): { x: number; y: number } {
-  const x = (lon - bounds.minLon) / (bounds.maxLon - bounds.minLon)
-  const y = 1 - (lat - bounds.minLat) / (bounds.maxLat - bounds.minLat)
-  
-  return { x, y }
-}
+export const circuitMetadata = baseMetadata
 
-function extractCoordinates(geometry: GeoJSONGeometry): number[][] {
-  if (geometry.type === 'LineString') {
-    return geometry.coordinates as number[][]
-  } else if (geometry.type === 'Polygon') {
-    return (geometry.coordinates as number[][][])[0]
-  } else if (geometry.type === 'MultiLineString') {
-    return (geometry.coordinates as number[][][]).flat()
-  }
-  return []
-}
-
-function getBounds(coords: number[][]): { minLon: number; maxLon: number; minLat: number; maxLat: number } {
-  const lons = coords.map(c => c[0])
-  const lats = coords.map(c => c[1])
-  
-  return {
-    minLon: Math.min(...lons),
-    maxLon: Math.max(...lons),
-    minLat: Math.min(...lats),
-    maxLat: Math.max(...lats)
-  }
-}
-
-async function parseGeoJSON(geojson: GeoJSONCollection, circuitId: string): Promise<Circuit | null> {
-  if (!geojson.features || geojson.features.length === 0) {
-    return null
+export function resolveCircuitMetadata(circuitId: string): CircuitMetadata | undefined {
+  if (baseMetadata[circuitId]) {
+    return baseMetadata[circuitId]
   }
 
-  const feature = geojson.features[0]
-  const coords = extractCoordinates(feature.geometry)
-  
-  if (coords.length < 3) {
-    return null
+  const swappedHyphen = circuitId.includes('_') ? circuitId.replace(/_/g, '-') : undefined
+  if (swappedHyphen && baseMetadata[swappedHyphen]) {
+    return baseMetadata[swappedHyphen]
   }
 
-  const bounds = getBounds(coords)
-  const layout = coords.map(coord => projectTo2D(coord[0], coord[1], bounds))
-
-  const basicInfo = circuitBasicInfo[circuitId] || {
-    name: feature.properties?.Name || feature.properties?.name || circuitId,
-    location: 'Unknown',
-    country: 'Unknown',
-    facts: ['Formula 1 racing circuit']
+  const swappedUnderscore = circuitId.includes('-') ? circuitId.replace(/-/g, '_') : undefined
+  if (swappedUnderscore && baseMetadata[swappedUnderscore]) {
+    return baseMetadata[swappedUnderscore]
   }
 
-  const wikiData: WikipediaData = (wikipediaData as Record<string, WikipediaData>)[circuitId] || { facts: [] }
-  console.log(`Loaded Wikipedia data for ${circuitId}:`, {
-    factsCount: wikiData.facts?.length || 0,
-    hasLength: !!wikiData.length,
-    hasCorners: !!wikiData.corners,
-    hasFirstGP: !!wikiData.firstGP,
-    hasTotalRaces: !!wikiData.totalRaces,
-    hasYearRange: !!wikiData.yearRange,
-    hasMostWins: !!wikiData.mostWins
-  })
-
-  const circuit = {
-    id: circuitId,
-    name: basicInfo.name,
-    location: basicInfo.location,
-    country: basicInfo.country,
-    layout,
-    facts: (wikiData?.facts && wikiData.facts.length > 0) ? wikiData.facts : (basicInfo.facts || ['Formula 1 racing circuit']),
-    length: wikiData?.length || basicInfo.length || 'Unknown',
-    lapRecord: wikiData?.lapRecord || undefined,
-    firstGP: wikiData?.firstGP || basicInfo.firstGP || undefined,
-    corners: wikiData?.corners || basicInfo.corners || Math.max(10, Math.floor(layout.length / 10)),
-    totalRaces: wikiData?.totalRaces || undefined,
-    yearRange: wikiData?.yearRange || undefined,
-    mostWins: wikiData?.mostWins || undefined
-  }
-
-  console.log(`Final circuit data for ${circuitId}:`, {
-    name: circuit.name,
-    location: circuit.location,
-    factsCount: circuit.facts.length,
-    length: circuit.length,
-    corners: circuit.corners,
-    firstGP: circuit.firstGP,
-    totalRaces: circuit.totalRaces,
-    yearRange: circuit.yearRange,
-    mostWins: circuit.mostWins ? `${circuit.mostWins.driver} (${circuit.mostWins.wins})` : 'none'
-  })
-
-  return circuit
-}
-
-export async function loadCircuitFromGitHub(circuitId: string): Promise<Circuit | null> {
-  const branches = ['main', 'master']
-  
-  for (const branch of branches) {
-    try {
-      const url = `https://raw.githubusercontent.com/bacinger/f1-circuits/${branch}/circuits/${circuitId}.geojson`
-      console.log(`Attempting to load circuit from: ${url}`)
-      const response = await fetch(url)
-      
-      if (!response.ok) {
-        console.warn(`Failed to load circuit ${circuitId} from ${branch}: ${response.status} ${response.statusText}`)
-        continue
-      }
-
-      const geojson = await response.json() as GeoJSONCollection
-      const circuit = await parseGeoJSON(geojson, circuitId)
-      if (circuit) {
-        console.log(`Successfully loaded circuit: ${circuitId} from branch ${branch}`)
-        return circuit
-      }
-    } catch (error) {
-      console.error(`Error loading circuit ${circuitId} from ${branch}:`, error)
-    }
-  }
-  
-  console.error(`Failed to load circuit ${circuitId} from all branches`)
-  return null
-}
-
-async function discoverAvailableCircuits(): Promise<string[]> {
-  try {
-    console.log('Discovering available circuits from GitHub...')
-    const response = await fetch(GITHUB_API_BASE)
-    
-    if (!response.ok) {
-      console.warn('Failed to discover circuits from GitHub API')
-      return []
-    }
-    
-    const files = await response.json() as Array<{ name: string; type: string }>
-    const geojsonFiles = files
-      .filter(file => file.type === 'file' && file.name.endsWith('.geojson'))
-      .map(file => file.name.replace('.geojson', ''))
-    
-    console.log(`Discovered ${geojsonFiles.length} circuits:`, geojsonFiles)
-    return geojsonFiles
-  } catch (error) {
-    console.error('Error discovering circuits:', error)
-    return []
-  }
-}
-
-export async function loadAllCircuitsFromGitHub(): Promise<Circuit[]> {
-  console.log('Starting circuit loading process...')
-  
-  const availableCircuits = await discoverAvailableCircuits()
-  
-  let circuitIdsToLoad: string[]
-  
-  if (availableCircuits.length > 0) {
-    console.log(`Using discovered circuits from GitHub: ${availableCircuits.length} found`)
-    circuitIdsToLoad = availableCircuits
-  } else {
-    console.log('Circuit discovery failed, using predefined list')
-    circuitIdsToLoad = Object.keys(circuitBasicInfo)
-  }
-  
-  console.log(`Attempting to load ${circuitIdsToLoad.length} circuits...`)
-  
-  const results = await Promise.allSettled(
-    circuitIdsToLoad.map(id => loadCircuitFromGitHub(id))
-  )
-
-  const loadedCircuits = results
-    .filter((result): result is PromiseFulfilledResult<Circuit | null> => 
-      result.status === 'fulfilled' && result.value !== null
-    )
-    .map(result => result.value as Circuit)
-  
-  console.log(`Successfully loaded ${loadedCircuits.length} circuits from GitHub`)
-  
-  if (loadedCircuits.length === 0) {
-    console.error('Failed to load any circuits. Possible reasons:')
-    console.error('- GitHub repo structure has changed')
-    console.error('- Network/CORS issues')
-    console.error('- Branch name is incorrect')
-    throw new Error('No circuits could be loaded from GitHub')
-  }
-  
-  return loadedCircuits
+  return undefined
 }

@@ -29,10 +29,10 @@ function App() {
   const currentAlgorithm = algorithm || 'hausdorff'
 
   useEffect(() => {
-    console.log('Starting circuit loading process...')
+    console.log('Loading cached circuit data...')
     loadAllCircuits()
       .then(loadedCircuits => {
-        console.log(`✓ Loaded ${loadedCircuits.length} circuits successfully`)
+        console.log(`✓ Loaded ${loadedCircuits.length} circuits from local cache`)
         
         loadedCircuits.forEach(circuit => {
           console.log(`Circuit: ${circuit.id}`, {
@@ -157,7 +157,7 @@ function App() {
           <div className="flex items-center justify-center py-20">
             <div className="text-center space-y-4">
               <Flag size={64} weight="duotone" className="mx-auto text-primary animate-pulse" />
-              <p className="text-lg text-muted-foreground">Loading F1 circuits from GitHub...</p>
+              <p className="text-lg text-muted-foreground">Loading F1 circuits...</p>
             </div>
           </div>
         ) : circuits.length === 0 ? (
@@ -166,12 +166,12 @@ function App() {
               <Flag size={64} weight="duotone" className="mx-auto text-muted-foreground" />
               <p className="text-lg text-muted-foreground font-medium">Failed to load circuits</p>
               <p className="text-sm text-muted-foreground">
-                Unable to load F1 circuit data from GitHub. This could be due to:
+                Unable to load the local F1 circuit data bundle. This could be due to:
               </p>
               <ul className="text-xs text-muted-foreground text-left list-disc pl-6 space-y-1">
-                <li>Network connectivity issues</li>
-                <li>GitHub repository structure changes</li>
-                <li>CORS restrictions</li>
+                <li>Data files missing (run the data download scripts)</li>
+                <li>Corrupted JSON in <code>src/data/circuits.json</code></li>
+                <li>Build cache needing a reload</li>
               </ul>
               <div className="pt-2">
                 <Button onClick={() => window.location.reload()} variant="outline" className="gap-2">

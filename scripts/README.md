@@ -1,6 +1,23 @@
-# Wikipedia Data Scraper
+# Data ingestion scripts
 
-This script scrapes Wikipedia data for F1 circuits and stores it locally in the repository.
+This folder contains small utilities that fetch external data ahead of time so the
+application can run entirely from locally cached files.
+
+## Circuit layout downloader (`fetch-circuits.ts`)
+
+Pulls the latest GeoJSON bundle from the [bacinger/f1-circuits](https://github.com/bacinger/f1-circuits)
+repository, normalizes each track into 2D coordinates, and stores the result in
+`src/data/circuits.json`.
+
+### Run it
+
+```bash
+npm run data:circuits
+```
+
+## Wikipedia data scraper (`scrape-wikipedia.ts`)
+
+Scrapes Wikipedia data for F1 circuits and stores it locally in the repository.
 
 ## Purpose
 
@@ -16,11 +33,7 @@ Instead of fetching Wikipedia data live during runtime, we pre-scrape the data a
 The scraper is written in TypeScript and can be run with ts-node or tsx:
 
 ```bash
-# Install tsx if not already installed
-npm install -g tsx
-
-# Run the scraper
-tsx scripts/scrape-wikipedia.ts
+npm run data:wikipedia
 ```
 
 ## What It Does
@@ -37,6 +50,14 @@ tsx scripts/scrape-wikipedia.ts
    - Driver with most wins at the circuit
 
 3. Saves all data to `src/data/wikipedia-data.json`
+
+## Updating both datasets
+
+To refresh layouts **and** Wikipedia stats in one go:
+
+```bash
+npm run data:pull
+```
 
 ## Output
 
