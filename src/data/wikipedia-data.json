@@ -1,0 +1,394 @@
+{
+  "monza": {
+    "facts": [
+      "The Autodromo Nazionale di Monza is a historic race track located near the city of Monza, north of Milan, in Italy.",
+      "It is one of the world's oldest automotive racing circuits, built in 1922.",
+      "The circuit is known as the Temple of Speed due to its high-speed characteristics and long straights.",
+      "Monza features historic banked sections that were used in the past but are now abandoned.",
+      "The Tifosi, passionate Italian Ferrari fans, create an incredible atmosphere during the Italian Grand Prix."
+    ],
+    "length": "5.793 km",
+    "corners": 11,
+    "firstGP": "1950",
+    "totalRaces": 73,
+    "yearRange": "1950-2024"
+  },
+  "monaco": {
+    "facts": [
+      "The Circuit de Monaco is a street circuit laid out on the city streets of Monte Carlo and La Condamine around the harbour of the Principality of Monaco.",
+      "It has been run since 1929 and is considered one of the most important and prestigious automobile races in the world.",
+      "The circuit is narrow with many elevation changes and tight corners, making it one of the most demanding tracks in Formula One.",
+      "Winning at Monaco is considered one of the greatest achievements in motorsport.",
+      "The circuit runs through the streets of Monaco with minimal run-off areas and barriers close to the track."
+    ],
+    "length": "3.337 km",
+    "corners": 19,
+    "firstGP": "1950",
+    "totalRaces": 69,
+    "yearRange": "1950-2024"
+  },
+  "silverstone": {
+    "facts": [
+      "Silverstone Circuit is built on the site of a World War II Royal Air Force bomber station.",
+      "The circuit hosted the first ever Formula One World Championship race in 1950.",
+      "It is home to the British Grand Prix and is known for its high-speed corners.",
+      "Famous corners include Copse, Maggotts, Becketts, and the high-speed Stowe corner.",
+      "The circuit has undergone numerous changes over the years but maintains its fast and flowing character."
+    ],
+    "length": "5.891 km",
+    "corners": 18,
+    "firstGP": "1950",
+    "totalRaces": 57,
+    "yearRange": "1950-2024"
+  },
+  "spa": {
+    "facts": [
+      "Circuit de Spa-Francorchamps is a motor-racing circuit located in Stavelot, Belgium.",
+      "It is the longest circuit on the current Formula One calendar at 7.004 kilometers.",
+      "The circuit is known for its fast, challenging, and high-speed nature, as well as its unpredictable weather.",
+      "The famous Eau Rouge and Raidillon complex is one of the most iconic corners in motorsport.",
+      "The circuit features significant elevation changes throughout its layout."
+    ],
+    "length": "7.004 km",
+    "corners": 19,
+    "firstGP": "1950",
+    "totalRaces": 54,
+    "yearRange": "1950-2024"
+  },
+  "suzuka": {
+    "facts": [
+      "Suzuka Circuit is a motorsport race track located in Ino, Suzuka City, Mie Prefecture, Japan.",
+      "It is one of the few circuits in the world to have a figure-eight layout.",
+      "The circuit was designed by Dutchman John Hugenholtz and built in 1962.",
+      "Famous corners include the 130R, Spoon Curve, and the first corner complex.",
+      "Suzuka is considered one of the most challenging and technical circuits in Formula One."
+    ],
+    "length": "5.807 km",
+    "corners": 18,
+    "firstGP": "1987",
+    "totalRaces": 35,
+    "yearRange": "1987-2024"
+  },
+  "interlagos": {
+    "facts": [
+      "The Autódromo José Carlos Pace is located in the city of São Paulo, Brazil.",
+      "It is one of the few Formula One circuits to run counter-clockwise.",
+      "The circuit is known for its challenging layout with elevation changes and variable weather conditions.",
+      "Named after Brazilian Formula One driver José Carlos Pace, who died in a plane crash in 1977.",
+      "The circuit has produced many dramatic and memorable races due to its unique characteristics."
+    ],
+    "length": "4.309 km",
+    "corners": 15,
+    "firstGP": "1973",
+    "totalRaces": 48,
+    "yearRange": "1973-2024"
+  },
+  "albert-park": {
+    "facts": [
+      "The Melbourne Grand Prix Circuit is a street circuit around Albert Park Lake in Melbourne, Australia.",
+      "The circuit uses public roads that are opened to traffic when the race is not being held.",
+      "It has been the host of the Australian Grand Prix since 1996.",
+      "The circuit is known for its fast and flowing layout with high average speeds.",
+      "Features a mix of tight corners, chicanes, and fast straights around the picturesque park setting."
+    ],
+    "length": "5.278 km",
+    "corners": 14,
+    "firstGP": "1996",
+    "totalRaces": 26,
+    "yearRange": "1996-2024"
+  },
+  "americas": {
+    "facts": [
+      "Circuit of the Americas is a Grade 1 FIA-specification race track in Austin, Texas.",
+      "It was the first purpose-built Formula One facility in the United States.",
+      "The circuit features dramatic elevation changes, with Turn 1 featuring a steep uphill climb.",
+      "The layout was designed to incorporate characteristics of several famous circuits from around the world.",
+      "COTA has hosted the United States Grand Prix since 2012."
+    ],
+    "length": "5.513 km",
+    "corners": 20,
+    "firstGP": "2012",
+    "totalRaces": 11,
+    "yearRange": "2012-2024"
+  },
+  "bahrain": {
+    "facts": [
+      "Bahrain International Circuit is located in Sakhir, Bahrain.",
+      "It was the first Formula One Grand Prix to be held in the Middle East.",
+      "The circuit is set in a desert landscape and features state-of-the-art facilities.",
+      "Features long straights and heavy braking zones, making it challenging for both cars and drivers.",
+      "The circuit has multiple layout configurations and is equipped with floodlights for night racing."
+    ],
+    "length": "5.412 km",
+    "corners": 15,
+    "firstGP": "2004",
+    "totalRaces": 19,
+    "yearRange": "2004-2024"
+  },
+  "baku": {
+    "facts": [
+      "The Baku City Circuit is a street circuit in Baku, Azerbaijan.",
+      "It features one of the longest straights in Formula One at over 2 kilometers.",
+      "The circuit passes through the narrow streets of Baku's historic Old City and along the modern waterfront.",
+      "Despite being a street circuit, it has some of the highest top speeds in Formula One.",
+      "The contrast between the old city walls and modern architecture creates a unique backdrop."
+    ],
+    "length": "6.003 km",
+    "corners": 20,
+    "firstGP": "2016",
+    "totalRaces": 7,
+    "yearRange": "2016-2024"
+  },
+  "catalunya": {
+    "facts": [
+      "Circuit de Barcelona-Catalunya is located in Montmeló, Barcelona, Catalonia, Spain.",
+      "It has been the primary venue for Formula One pre-season testing for many years.",
+      "The circuit is known for its technical layout that tests all aspects of a car's performance.",
+      "Features a challenging mix of high-speed and low-speed corners.",
+      "The circuit has undergone several modifications to improve overtaking opportunities."
+    ],
+    "length": "4.675 km",
+    "corners": 16,
+    "firstGP": "1991",
+    "totalRaces": 32,
+    "yearRange": "1991-2024"
+  },
+  "hungaroring": {
+    "facts": [
+      "The Hungaroring is a motorsport race track in Mogyoród, Hungary.",
+      "It was the first Formula One race to be held behind the Iron Curtain in 1986.",
+      "The circuit is tight and twisty, often compared to a go-kart track on a larger scale.",
+      "Overtaking is notoriously difficult, making qualifying position and strategy crucial.",
+      "The circuit is set in a natural amphitheater with good viewing for spectators."
+    ],
+    "length": "4.381 km",
+    "corners": 14,
+    "firstGP": "1986",
+    "totalRaces": 38,
+    "yearRange": "1986-2024"
+  },
+  "imola": {
+    "facts": [
+      "The Autodromo Internazionale Enzo e Dino Ferrari is located in Imola, Italy.",
+      "The circuit is named after Enzo Ferrari and his son Alfredo 'Dino' Ferrari.",
+      "It features challenging corners including Tamburello, Villeneuve, and Variante Alta.",
+      "The circuit has a rich history in Formula One, having hosted many dramatic races.",
+      "Known for passionate Italian fans, particularly Ferrari supporters."
+    ],
+    "length": "4.909 km",
+    "corners": 19,
+    "firstGP": "1980",
+    "totalRaces": 28,
+    "yearRange": "1980-2024"
+  },
+  "jeddah": {
+    "facts": [
+      "The Jeddah Corniche Circuit is a street circuit in Jeddah, Saudi Arabia.",
+      "It is the fastest street circuit in Formula One with average speeds exceeding 250 km/h.",
+      "The circuit runs along the Red Sea waterfront with stunning views.",
+      "Features high-speed corners and minimal run-off areas, making it extremely challenging.",
+      "The circuit has 27 corners, making it one of the most complex layouts on the calendar."
+    ],
+    "length": "6.174 km",
+    "corners": 27,
+    "firstGP": "2021",
+    "totalRaces": 3,
+    "yearRange": "2021-2024"
+  },
+  "marina-bay": {
+    "facts": [
+      "Marina Bay Street Circuit is a street circuit in Marina Bay, Singapore.",
+      "It was the first night race in Formula One history, held under floodlights.",
+      "The circuit is known for its bumpy surface and tight, twisting layout.",
+      "Features a stunning backdrop of Singapore's modern skyline and Marina Bay Sands.",
+      "The heat and humidity make it one of the most physically demanding races for drivers."
+    ],
+    "length": "4.940 km",
+    "corners": 19,
+    "firstGP": "2008",
+    "totalRaces": 15,
+    "yearRange": "2008-2024"
+  },
+  "miami": {
+    "facts": [
+      "Miami International Autodrome is a purpose-built circuit around Hard Rock Stadium in Miami Gardens, Florida.",
+      "The circuit made its debut on the Formula One calendar in 2022.",
+      "Features a complex of corners and a long straight down the front stretch.",
+      "The circuit incorporates the stadium parking lots and access roads.",
+      "Known for its party atmosphere and entertainment focus alongside the racing."
+    ],
+    "length": "5.412 km",
+    "corners": 19,
+    "firstGP": "2022",
+    "totalRaces": 2,
+    "yearRange": "2022-2024"
+  },
+  "red-bull-ring": {
+    "facts": [
+      "The Red Bull Ring is a motorsport race track in Spielberg, Styria, Austria.",
+      "It is the shortest lap on the current Formula One calendar.",
+      "Set in the scenic Styrian mountains with dramatic elevation changes.",
+      "Features a fast, flowing layout with good overtaking opportunities.",
+      "The circuit was originally known as the Österreichring and has a long racing history."
+    ],
+    "length": "4.318 km",
+    "corners": 10,
+    "firstGP": "1970",
+    "totalRaces": 36,
+    "yearRange": "1970-2024"
+  },
+  "rodriguez": {
+    "facts": [
+      "Autódromo Hermanos Rodríguez is located in Mexico City, Mexico.",
+      "It is the highest altitude circuit in Formula One at approximately 2,200 meters above sea level.",
+      "The thin air affects engine performance and aerodynamics significantly.",
+      "Features the famous Peraltada corner and a unique stadium section.",
+      "Named after the Rodriguez brothers, Pedro and Ricardo, both racing drivers who died in racing accidents."
+    ],
+    "length": "4.304 km",
+    "corners": 17,
+    "firstGP": "1963",
+    "totalRaces": 22,
+    "yearRange": "1963-2024"
+  },
+  "shanghai": {
+    "facts": [
+      "Shanghai International Circuit is located in Shanghai, China.",
+      "Features a unique snail-shaped Turn 1 and Turn 2 complex.",
+      "The circuit has a long back straight providing good overtaking opportunities.",
+      "Known for unpredictable weather conditions that can dramatically affect races.",
+      "The circuit was designed by Hermann Tilke and opened in 2004."
+    ],
+    "length": "5.451 km",
+    "corners": 16,
+    "firstGP": "2004",
+    "totalRaces": 18,
+    "yearRange": "2004-2024"
+  },
+  "vegas": {
+    "facts": [
+      "The Las Vegas Strip Circuit runs through the heart of Las Vegas, Nevada.",
+      "Features the famous Las Vegas Strip as part of its layout.",
+      "It is a night race with spectacular neon-lit surroundings.",
+      "The circuit includes a long straight along the Strip exceeding 2 kilometers.",
+      "Made its debut on the Formula One calendar in 2023."
+    ],
+    "length": "6.120 km",
+    "corners": 17,
+    "firstGP": "2023",
+    "totalRaces": 1,
+    "yearRange": "2023-2024"
+  },
+  "villeneuve": {
+    "facts": [
+      "Circuit Gilles Villeneuve is located on Île Notre-Dame in Montreal, Quebec, Canada.",
+      "Named after Canadian Formula One legend Gilles Villeneuve.",
+      "The circuit is built on an artificial island in the St. Lawrence River.",
+      "Features the famous Wall of Champions which has caught out many top drivers over the years.",
+      "Known for its combination of long straights and chicanes that create good racing."
+    ],
+    "length": "4.361 km",
+    "corners": 14,
+    "firstGP": "1978",
+    "totalRaces": 42,
+    "yearRange": "1978-2024"
+  },
+  "yas-marina": {
+    "facts": [
+      "Yas Marina Circuit is located on Yas Island in Abu Dhabi, United Arab Emirates.",
+      "The race is a twilight event, starting in daylight and finishing under floodlights.",
+      "Features the stunning Yas Hotel that straddles the track with an iconic design.",
+      "The circuit has a mix of tight technical sections and long straights.",
+      "Has often hosted the season-ending race with championship deciders."
+    ],
+    "length": "5.281 km",
+    "corners": 16,
+    "firstGP": "2009",
+    "totalRaces": 15,
+    "yearRange": "2009-2024"
+  },
+  "zandvoort": {
+    "facts": [
+      "Circuit Zandvoort is located in the seaside resort town of Zandvoort, Netherlands.",
+      "The circuit returned to the Formula One calendar in 2021 after a long absence.",
+      "Features heavily banked corners that were added for the modern Formula One return.",
+      "Set in the sand dunes near the North Sea coast.",
+      "Known for passionate Dutch fans, particularly supporters of Max Verstappen."
+    ],
+    "length": "4.259 km",
+    "corners": 14,
+    "firstGP": "1952",
+    "totalRaces": 32,
+    "yearRange": "1952-2024"
+  },
+  "hockenheim": {
+    "facts": [
+      "The Hockenheimring is located near the town of Hockenheim in Baden-Württemberg, Germany.",
+      "The circuit has a rich Formula One heritage dating back to 1970.",
+      "Features a stadium section with large grandstands providing excellent viewing.",
+      "The modern layout is significantly shorter than the original long, flat-out circuit through the forests.",
+      "Known for its mix of fast straights and technical corners."
+    ],
+    "length": "4.574 km",
+    "corners": 17,
+    "firstGP": "1970",
+    "totalRaces": 35,
+    "yearRange": "1970-2024"
+  },
+  "ricard": {
+    "facts": [
+      "Circuit Paul Ricard is located in Le Castellet, near Marseille, France.",
+      "The circuit is famous for its distinctive blue and red run-off areas.",
+      "Features the long Mistral straight with a heavy braking zone at the end.",
+      "Known for its technical layout and hot Mediterranean climate.",
+      "The circuit has extensive run-off areas making it one of the safest tracks in Formula One."
+    ],
+    "length": "5.842 km",
+    "corners": 15,
+    "firstGP": "1971",
+    "totalRaces": 18,
+    "yearRange": "1971-2024"
+  },
+  "sochi": {
+    "facts": [
+      "Sochi Autodrom is located in the Sochi Olympic Park, Russia.",
+      "The circuit was built around the venues used for the 2014 Winter Olympics.",
+      "Features a long main straight and tight technical sections.",
+      "The circuit is a blend of street circuit and permanent track characteristics.",
+      "Hosted the Russian Grand Prix from 2014 until being removed from the calendar."
+    ],
+    "length": "5.848 km",
+    "corners": 18,
+    "firstGP": "2014",
+    "totalRaces": 8,
+    "yearRange": "2014-2021"
+  },
+  "sakhir": {
+    "facts": [
+      "The Sakhir outer layout is an alternative configuration of the Bahrain International Circuit.",
+      "This layout was used for the 2020 Sakhir Grand Prix.",
+      "It produces one of the fastest lap times in Formula One history.",
+      "Features primarily low-speed corners with long straights.",
+      "The outer circuit configuration is significantly different from the standard Bahrain GP layout."
+    ],
+    "length": "3.543 km",
+    "corners": 11,
+    "firstGP": "2020",
+    "totalRaces": 1,
+    "yearRange": "2020-2020"
+  },
+  "saudi-arabia": {
+    "facts": [
+      "The Jeddah Corniche Circuit is a street circuit in Jeddah, Saudi Arabia.",
+      "It is the fastest street circuit in Formula One with incredibly high average speeds.",
+      "Features blind corners and challenging high-speed sections.",
+      "Runs along the Red Sea waterfront creating a stunning backdrop.",
+      "The circuit is lit by floodlights allowing for night racing."
+    ],
+    "length": "6.174 km",
+    "corners": 27,
+    "firstGP": "2021",
+    "totalRaces": 3,
+    "yearRange": "2021-2024"
+  }
+}

@@ -27,11 +27,11 @@ A web application that challenges users to draw shapes that match Formula 1 circ
 - **Success criteria**: Returns results instantly (circuits pre-loaded), shows match percentage, displays top match with overlay visualization
 
 ### Circuit Information Display
-- **Functionality**: Shows detailed information and facts about matched circuits with pre-loaded circuit data
+- **Functionality**: Shows detailed information and facts about matched circuits from static Wikipedia data stored in the repository
 - **Purpose**: Educational component that rewards users with F1 knowledge
 - **Trigger**: Matching algorithm completes or user selects a circuit in browse mode
-- **Progression**: Match found → display circuit name, location, and layout → show interesting facts → display circuit statistics (length, corners, lap record, first GP)
-- **Success criteria**: Each circuit displays pre-loaded information, information is easily readable with accurate data
+- **Progression**: Match found → load data from static JSON file → display circuit name, location, and layout → show interesting facts → display circuit statistics (length, corners, lap record, first GP, total races, year range, most wins)
+- **Success criteria**: Each circuit displays pre-scraped Wikipedia information instantly, information is easily readable with accurate data, no live API calls required
 
 ### Circuit Browser
 - **Functionality**: Browse all available F1 circuits with interactive selection and detailed information
@@ -69,7 +69,7 @@ A web application that challenges users to draw shapes that match Formula 1 circ
 - **No match found**: Show "No close match" message with encouragement to try again
 - **Touch palm rejection**: Prevent accidental touches from registering as drawing input
 - **Rapid redrawing**: Debounce matching algorithm to prevent performance issues
-- **Data storage**: Circuit layouts and facts stored locally in repository, no external loading required
+- **Data storage**: Circuit layouts and Wikipedia facts stored locally in repository as static JSON files, scraper script available to update data when needed, no live API calls or external loading during app runtime
 
 ## Design Direction
 

@@ -1,5 +1,19 @@
 import { Circuit } from './circuits'
-import { scrapeWikipediaData } from './wikipedia-scraper'
+import wikipediaData from '@/data/wikipedia-data.json'
+
+interface WikipediaData {
+  facts: string[]
+  length?: string
+  lapRecord?: string
+  firstGP?: string
+  corners?: number
+  totalRaces?: number
+  yearRange?: string
+  mostWins?: {
+    driver: string
+    wins: number
+  }
+}
 
 interface GeoJSONGeometry {
   type: string
@@ -453,23 +467,16 @@ async function parseGeoJSON(geojson: GeoJSONCollection, circuitId: string): Prom
     facts: ['Formula 1 racing circuit']
   }
 
-  let wikiData
-  try {
-    console.log(`Fetching Wikipedia data for ${circuitId}...`)
-    wikiData = await scrapeWikipediaData(circuitId)
-    console.log(`Wikipedia data for ${circuitId}:`, {
-      factsCount: wikiData.facts?.length || 0,
-      hasLength: !!wikiData.length,
-      hasCorners: !!wikiData.corners,
-      hasFirstGP: !!wikiData.firstGP,
-      hasTotalRaces: !!wikiData.totalRaces,
-      hasYearRange: !!wikiData.yearRange,
-      hasMostWins: !!wikiData.mostWins
-    })
-  } catch (error) {
-    console.error(`Error fetching Wikipedia data for ${circuitId}:`, error)
-    wikiData = { facts: [] }
-  }
+  const wikiData: WikipediaData = (wikipediaData as Record<string, WikipediaData>)[circuitId] || { facts: [] }
+  console.log(`Loaded Wikipedia data for ${circuitId}:`, {
+    factsCount: wikiData.facts?.length || 0,
+    hasLength: !!wikiData.length,
+    hasCorners: !!wikiData.corners,
+    hasFirstGP: !!wikiData.firstGP,
+    hasTotalRaces: !!wikiData.totalRaces,
+    hasYearRange: !!wikiData.yearRange,
+    hasMostWins: !!wikiData.mostWins
+  })
 
   const circuit = {
     id: circuitId,
