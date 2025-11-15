@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Toaster } from 'sonner'
 import { X, Flag, Pencil } from '@phosphor-icons/react'
-import { circuits, Circuit } from '@/lib/circuits'
+import { circuits } from '@/lib/circuits'
 import { matchShape, MatchAlgorithm, Point } from '@/lib/matching'
 
 interface MatchedCircuit {

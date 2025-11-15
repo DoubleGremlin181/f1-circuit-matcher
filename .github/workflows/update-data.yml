@@ -35,7 +35,9 @@ jobs:
       - name: Check for changes
         id: git-check
         run: |
-          git diff --exit-code src/data/ || echo "changes=true" >> $GITHUB_OUTPUT
+          if [ -n "$(git status --porcelain src/data/)" ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          fi
           
       - name: Commit and push if changed
         if: steps.git-check.outputs.changes == 'true'
