@@ -1,0 +1,151 @@
+import { useRef, useEffect, useState } from 'react'
+import { Point } from '@/lib/matching'
+
+interface DrawingCanvasProps {
+  onDrawingComplete: (points: Point[]) => void
+  disabled?: boolean
+}
+
+export function DrawingCanvas({ onDrawingComplete, disabled = false }: DrawingCanvasProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [isDrawing, setIsDrawing] = useState(false)
+  const [points, setPoints] = useState<Point[]>([])
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const rect = canvas.getBoundingClientRect()
+    canvas.width = rect.width * window.devicePixelRatio
+    canvas.height = rect.height * window.devicePixelRatio
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio)
+
+    ctx.strokeStyle = 'oklch(0.55 0.22 25)'
+    ctx.lineWidth = 3
+    ctx.lineCap = 'round'
+    ctx.lineJoin = 'round'
+
+    if (points.length > 0) {
+      drawPath(ctx, points, rect.width, rect.height)
+    }
+  }, [points])
+
+  const drawPath = (
+    ctx: CanvasRenderingContext2D,
+    pathPoints: Point[],
+    width: number,
+    height: number
+  ) => {
+    ctx.clearRect(0, 0, width, height)
+    
+    if (pathPoints.length < 2) return
+
+    ctx.beginPath()
+    ctx.moveTo(pathPoints[0].x * width, pathPoints[0].y * height)
+
+    for (let i = 1; i < pathPoints.length; i++) {
+      ctx.lineTo(pathPoints[i].x * width, pathPoints[i].y * height)
+    }
+
+    ctx.stroke()
+  }
+
+  const getPointFromEvent = (e: React.PointerEvent<HTMLCanvasElement>): Point => {
+    const canvas = canvasRef.current!
+    const rect = canvas.getBoundingClientRect()
+    return {
+      x: (e.clientX - rect.left) / rect.width,
+      y: (e.clientY - rect.top) / rect.height
+    }
+  }
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (disabled) return
+    
+    e.preventDefault()
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    canvas.setPointerCapture(e.pointerId)
+    setIsDrawing(true)
+    
+    const point = getPointFromEvent(e)
+    setPoints([point])
+  }
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (!isDrawing || disabled) return
+    
+    e.preventDefault()
+    const point = getPointFromEvent(e)
+    
+    setPoints(prev => {
+      const lastPoint = prev[prev.length - 1]
+      const dx = point.x - lastPoint.x
+      const dy = point.y - lastPoint.y
+      const distance = Math.sqrt(dx * dx + dy * dy)
+      
+      if (distance > 0.01) {
+        return [...prev, point]
+      }
+      return prev
+    })
+  }
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (!isDrawing || disabled) return
+    
+    e.preventDefault()
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    canvas.releasePointerCapture(e.pointerId)
+    setIsDrawing(false)
+
+    if (points.length > 5) {
+      const closedPoints = [...points, points[0]]
+      onDrawingComplete(closedPoints)
+    }
+  }
+
+  const handlePointerCancel = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (disabled) return
+    
+    const canvas = canvasRef.current
+    if (canvas && e.pointerId) {
+      canvas.releasePointerCapture(e.pointerId)
+    }
+    setIsDrawing(false)
+  }
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className={`w-full aspect-[4/3] md:aspect-[16/9] border-2 rounded-lg touch-none cursor-crosshair transition-colors ${
+        isDrawing
+          ? 'border-primary shadow-lg'
+          : disabled
+          ? 'border-muted bg-muted/20'
+          : 'border-dashed border-border hover:border-primary/50'
+      }`}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerCancel}
+    />
+  )
+}
+
+export function clearCanvas(canvasRef: React.RefObject<HTMLCanvasElement>) {
+  const canvas = canvasRef.current
+  if (!canvas) return
+
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return
+
+  const rect = canvas.getBoundingClientRect()
+  ctx.clearRect(0, 0, rect.width, rect.height)
+}
