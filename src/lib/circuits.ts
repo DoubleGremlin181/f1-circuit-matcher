@@ -8,6 +8,7 @@ export interface Circuit {
   length: string
   lapRecord?: string
   firstGP?: string
+  corners: number
 }
 
 export const circuits: Circuit[] = [
@@ -35,7 +36,8 @@ export const circuits: Circuit[] = [
     ],
     length: '5.793 km',
     lapRecord: '1:21.046 - Rubens Barrichello (2004)',
-    firstGP: '1950'
+    firstGP: '1950',
+    corners: 11
   },
   {
     id: 'monaco',
@@ -60,7 +62,8 @@ export const circuits: Circuit[] = [
     ],
     length: '3.337 km',
     lapRecord: '1:12.909 - Lewis Hamilton (2021)',
-    firstGP: '1950'
+    firstGP: '1950',
+    corners: 19
   },
   {
     id: 'silverstone',
@@ -84,7 +87,8 @@ export const circuits: Circuit[] = [
     ],
     length: '5.891 km',
     lapRecord: '1:27.097 - Max Verstappen (2020)',
-    firstGP: '1950'
+    firstGP: '1950',
+    corners: 18
   },
   {
     id: 'spa',
@@ -107,7 +111,8 @@ export const circuits: Circuit[] = [
     ],
     length: '7.004 km',
     lapRecord: '1:46.286 - Valtteri Bottas (2018)',
-    firstGP: '1950'
+    firstGP: '1950',
+    corners: 19
   },
   {
     id: 'suzuka',
@@ -131,7 +136,8 @@ export const circuits: Circuit[] = [
     ],
     length: '5.807 km',
     lapRecord: '1:30.983 - Lewis Hamilton (2019)',
-    firstGP: '1987'
+    firstGP: '1987',
+    corners: 18
   },
   {
     id: 'interlagos',
@@ -154,6 +160,7 @@ export const circuits: Circuit[] = [
     ],
     length: '4.309 km',
     lapRecord: '1:10.540 - Valtteri Bottas (2018)',
-    firstGP: '1973'
+    firstGP: '1973',
+    corners: 15
   }
 ]

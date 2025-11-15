@@ -4,9 +4,10 @@ import { Point } from '@/lib/matching'
 interface DrawingCanvasProps {
   onDrawingComplete: (points: Point[]) => void
   disabled?: boolean
+  overlayCircuit?: Point[]
 }
 
-export function DrawingCanvas({ onDrawingComplete, disabled = false }: DrawingCanvasProps) {
+export function DrawingCanvas({ onDrawingComplete, disabled = false, overlayCircuit }: DrawingCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [isDrawing, setIsDrawing] = useState(false)
   const [points, setPoints] = useState<Point[]>([])
@@ -23,25 +24,38 @@ export function DrawingCanvas({ onDrawingComplete, disabled = false }: DrawingCa
     canvas.height = rect.height * window.devicePixelRatio
     ctx.scale(window.devicePixelRatio, window.devicePixelRatio)
 
-    ctx.strokeStyle = 'oklch(0.55 0.22 25)'
-    ctx.lineWidth = 3
-    ctx.lineCap = 'round'
-    ctx.lineJoin = 'round'
+    ctx.clearRect(0, 0, rect.width, rect.height)
+
+    const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim()
+    const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()
+
+    if (overlayCircuit && overlayCircuit.length > 0) {
+      drawPath(ctx, overlayCircuit, rect.width, rect.height, accentColor, 2.5, [5, 5])
+    }
 
     if (points.length > 0) {
-      drawPath(ctx, points, rect.width, rect.height)
+      drawPath(ctx, points, rect.width, rect.height, primaryColor, 3)
     }
-  }, [points])
+  }, [points, overlayCircuit])
 
   const drawPath = (
     ctx: CanvasRenderingContext2D,
     pathPoints: Point[],
     width: number,
-    height: number
+    height: number,
+    strokeStyle: string = 'oklch(0.55 0.22 25)',
+    lineWidth: number = 3,
+    lineDash: number[] = []
   ) => {
-    ctx.clearRect(0, 0, width, height)
-    
     if (pathPoints.length < 2) return
+
+    ctx.save()
+    ctx.strokeStyle = strokeStyle
+    ctx.lineWidth = lineWidth
+    ctx.lineCap = 'round'
+    ctx.lineJoin = 'round'
+    ctx.globalAlpha = lineDash.length > 0 ? 0.6 : 1
+    ctx.setLineDash(lineDash)
 
     ctx.beginPath()
     ctx.moveTo(pathPoints[0].x * width, pathPoints[0].y * height)
@@ -51,6 +65,7 @@ export function DrawingCanvas({ onDrawingComplete, disabled = false }: DrawingCa
     }
 
     ctx.stroke()
+    ctx.restore()
   }
 
   const getPointFromEvent = (e: React.PointerEvent<HTMLCanvasElement>): Point => {

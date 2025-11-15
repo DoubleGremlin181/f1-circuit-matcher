@@ -3,6 +3,7 @@ import { useKV } from '@github/spark/hooks'
 import { DrawingCanvas } from '@/components/DrawingCanvas'
 import { CircuitCard } from '@/components/CircuitCard'
 import { SettingsSheet } from '@/components/SettingsSheet'
+import { ThemeToggle } from '@/components/ThemeToggle'
 import { Button } from '@/components/ui/button'
 import { Toaster, toast } from 'sonner'
 import { X, Flag } from '@phosphor-icons/react'
@@ -84,7 +85,10 @@ function App() {
                 </p>
               </div>
             </div>
-            <SettingsSheet algorithm={currentAlgorithm} onAlgorithmChange={handleAlgorithmChange} />
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
+              <SettingsSheet algorithm={currentAlgorithm} onAlgorithmChange={handleAlgorithmChange} />
+            </div>
           </div>
         </header>
 
@@ -102,7 +106,11 @@ function App() {
                 Clear
               </Button>
             </div>
-            <DrawingCanvas key={key} onDrawingComplete={handleDrawingComplete} />
+            <DrawingCanvas 
+              key={key} 
+              onDrawingComplete={handleDrawingComplete}
+              overlayCircuit={currentCircuit?.layout}
+            />
             <p className="text-sm text-muted-foreground text-center">
               Draw a closed shape with your finger or mouse
             </p>

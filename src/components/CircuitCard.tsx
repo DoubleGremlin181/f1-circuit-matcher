@@ -48,6 +48,9 @@ export function CircuitCard({ circuit, matchPercentage }: CircuitCardProps) {
             <Badge variant="outline">
               Length: {circuit.length}
             </Badge>
+            <Badge variant="outline">
+              Corners: {circuit.corners}
+            </Badge>
             {circuit.lapRecord && (
               <Badge variant="outline" className="hidden sm:inline-flex">
                 Record: {circuit.lapRecord}

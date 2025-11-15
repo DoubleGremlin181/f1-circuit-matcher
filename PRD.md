@@ -13,25 +13,32 @@ A web application that challenges users to draw shapes that match Formula 1 circ
 ## Essential Features
 
 ### Drawing Canvas
-- **Functionality**: Touch and mouse-enabled drawing surface where users create closed shapes
+- **Functionality**: Touch and mouse-enabled drawing surface where users create closed shapes with live circuit overlay
 - **Purpose**: Primary interaction mechanism that needs to feel natural on both mobile and desktop
 - **Trigger**: User touches/clicks canvas and begins drawing
-- **Progression**: Touch canvas → drag to draw path → release to complete shape → shape automatically closes → matching algorithm runs
-- **Success criteria**: Smooth drawing on mobile and desktop with no lag, clear visual feedback of the drawn path
+- **Progression**: Touch canvas → drag to draw path → release to complete shape → shape automatically closes → matching algorithm runs → matched circuit overlays on canvas
+- **Success criteria**: Smooth drawing on mobile and desktop with no lag, clear visual feedback of the drawn path, semi-transparent overlay of matched circuit for comparison
 
 ### Shape Matching Engine
-- **Functionality**: Compares user's drawn shape against database of F1 circuit layouts using configurable similarity algorithms
+- **Functionality**: Compares user's drawn shape against database of F1 circuit layouts using configurable similarity algorithms with official circuit data
 - **Purpose**: Core game mechanic that determines which circuit best matches the user's drawing
 - **Trigger**: User completes a closed shape on canvas
-- **Progression**: Shape completed → normalize both shapes → apply selected algorithm (Hausdorff distance, Frechet distance, or turning angle) → rank circuits by similarity → display top match with percentage
-- **Success criteria**: Returns results within 500ms, shows match percentage, displays top 3 matches
+- **Progression**: Shape completed → normalize both shapes → apply selected algorithm (Hausdorff distance, Frechet distance, or turning angle) → rank circuits by similarity → display top match with percentage → show circuit overlay
+- **Success criteria**: Returns results within 500ms, shows match percentage, displays top match with overlay visualization
 
 ### Circuit Information Display
-- **Functionality**: Shows detailed information and fun facts about matched circuits
+- **Functionality**: Shows detailed information and fun facts about matched circuits sourced from official F1 data
 - **Purpose**: Educational component that rewards users with interesting F1 knowledge
 - **Trigger**: Matching algorithm completes
-- **Progression**: Match found → display circuit name, location, and layout → show fun facts (lap record, notable wins, unique characteristics)
-- **Success criteria**: Each circuit has 3-5 interesting facts, information is easily readable
+- **Progression**: Match found → display circuit name, location, and layout → show fun facts (lap record, notable wins, unique characteristics) → display number of corners and circuit length
+- **Success criteria**: Each circuit has 3-5 interesting facts from official sources, information is easily readable, accurate lap records and circuit statistics
+
+### Dark Mode Toggle
+- **Functionality**: Switches between light and dark themes with persistent preference
+- **Purpose**: Provides comfortable viewing in different lighting conditions and user preference
+- **Trigger**: User clicks theme toggle button
+- **Progression**: Click toggle → theme switches → preference saves to localStorage → canvas colors update dynamically
+- **Success criteria**: Instant theme switching, smooth color transitions, proper contrast in both modes, respects system preference on first load
 
 ### Settings Panel
 - **Functionality**: Allows users to select different shape matching algorithms
@@ -41,10 +48,10 @@ A web application that challenges users to draw shapes that match Formula 1 circ
 - **Success criteria**: Settings persist between sessions, clear explanation of each algorithm's characteristics
 
 ### Clear/Reset Function
-- **Functionality**: Clears the canvas to start a new drawing
+- **Functionality**: Clears the canvas and overlay to start a new drawing
 - **Purpose**: Allows users to quickly try again without page reload
 - **Trigger**: User clicks clear button
-- **Progression**: Click clear → canvas resets → previous results fade out → ready for new drawing
+- **Progression**: Click clear → canvas resets → overlay clears → previous results fade out → ready for new drawing
 - **Success criteria**: Instant canvas clear, smooth transition
 
 ## Edge Case Handling
@@ -62,18 +69,24 @@ The design should feel playful yet sophisticated, like a racing simulation meets
 
 ## Color Selection
 
-Analogous scheme using racing-inspired reds and oranges with neutral grays for a focused, energetic feel
+Analogous scheme using racing-inspired reds and oranges with neutral grays for a focused, energetic feel, with full dark mode support
 
 - **Primary Color**: Racing Red (oklch(0.55 0.22 25)) - Communicates F1's iconic Ferrari red, energy, and competition
 - **Secondary Colors**: Charcoal Gray (oklch(0.25 0.01 270)) for backgrounds and Carbon Fiber Gray (oklch(0.35 0.01 270)) for secondary elements, evoking the technical precision of F1
 - **Accent Color**: Bright Orange (oklch(0.70 0.18 45)) - Attention-grabbing highlight for CTAs and match results
-- **Foreground/Background Pairings**:
+- **Foreground/Background Pairings (Light Mode)**:
   - Background (Light Gray oklch(0.98 0 0)): Charcoal text (oklch(0.20 0.01 270)) - Ratio 13.2:1 ✓
   - Card (White oklch(1 0 0)): Charcoal text (oklch(0.20 0.01 270)) - Ratio 15.1:1 ✓
   - Primary (Racing Red oklch(0.55 0.22 25)): White text (oklch(1 0 0)) - Ratio 5.8:1 ✓
   - Secondary (Dark Gray oklch(0.35 0.01 270)): White text (oklch(1 0 0)) - Ratio 8.9:1 ✓
   - Accent (Bright Orange oklch(0.70 0.18 45)): Charcoal text (oklch(0.20 0.01 270)) - Ratio 6.2:1 ✓
   - Muted (Light Neutral oklch(0.95 0.005 270)): Dark Gray text (oklch(0.45 0.01 270)) - Ratio 8.1:1 ✓
+- **Foreground/Background Pairings (Dark Mode)**:
+  - Background (Dark Gray oklch(0.15 0.01 270)): Light text (oklch(0.95 0.005 270)) - Ratio 12.8:1 ✓
+  - Card (Dark Card oklch(0.18 0.01 270)): Light text (oklch(0.95 0.005 270)) - Ratio 11.5:1 ✓
+  - Primary (Brighter Red oklch(0.65 0.22 25)): Near-white text (oklch(0.98 0 0)) - Ratio 6.1:1 ✓
+  - Secondary (Darker Gray oklch(0.25 0.01 270)): Light text (oklch(0.95 0.005 270)) - Ratio 9.2:1 ✓
+  - Accent (Brighter Orange oklch(0.75 0.18 45)): Dark text (oklch(0.15 0.01 270)) - Ratio 7.8:1 ✓
 
 ## Font Selection
 
@@ -97,31 +110,33 @@ Purposeful and snappy animations that reinforce the speed and precision of Formu
 ## Component Selection
 
 - **Components**:
-  - Canvas (custom) - HTML5 Canvas with pointer event handlers for cross-device drawing
+  - Canvas (custom) - HTML5 Canvas with pointer event handlers for cross-device drawing and circuit overlay visualization
   - Card (shadcn) - For circuit information display with subtle border and shadow
   - Sheet (shadcn) - Side drawer for settings panel on mobile, dialog on desktop
-  - Button (shadcn) - Clear and settings actions with icon + text combinations
+  - Button (shadcn) - Clear, settings, and theme toggle actions with icon + text combinations
   - RadioGroup (shadcn) - Algorithm selection in settings
-  - Badge (shadcn) - Match percentage display and circuit metadata tags
+  - Badge (shadcn) - Match percentage display and circuit metadata tags (corners, length, lap record)
   - ScrollArea (shadcn) - For circuit facts list
   - Separator (shadcn) - Visual dividers between sections
   
 - **Customizations**:
-  - Custom Canvas component with touch event handling and path smoothing
+  - Custom Canvas component with touch event handling, path smoothing, and semi-transparent circuit overlay
   - Custom shape comparison algorithms (Hausdorff, Frechet, Turning Angle)
-  - Circuit visualization overlay showing reference shape
+  - Theme toggle with localStorage persistence and system preference detection
+  - Dynamic canvas colors that adapt to current theme
   
 - **States**:
   - Buttons: Default with subtle shadow, hover with slight lift and color brighten, active with scale down (95%), disabled with 40% opacity
-  - Canvas: Default with dashed border, active (drawing) with solid border and slight glow, completed with success border color
+  - Canvas: Default with dashed border, active (drawing) with solid border and slight glow, completed with success border color, overlay visible when match found
   - Match results: Hidden (0 opacity), loading (skeleton), revealed (fade + slide in)
+  - Theme: Light mode (default), dark mode (persisted), system preference respected
   
 - **Icon Selection**:
   - Gear (Settings) - Settings panel trigger
   - X (Close/Clear) - Clear canvas and close dialogs  
   - Flag (CheckeredFlag) - Race/circuit theme marker
-  - Path (BezierCurve) - Drawing/shape indicator
-  - Target (Crosshair) - Accuracy/matching indicator
+  - Moon/Sun - Theme toggle for dark/light mode
+  - MapPin - Location indicator for circuits
   
 - **Spacing**:
   - Page padding: p-4 (mobile), p-6 (tablet), p-8 (desktop)
