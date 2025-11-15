@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Circuit } from '@/lib/circuits'
-import { loadCircuitWithWikipedia } from '@/lib/circuit-loader'
 import { Button } from '@/components/ui/button'
-import { Progress } from '@/components/ui/progress'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Badge } from '@/components/ui/badge'
 import { ArrowLeft, MapPin, Timer, CalendarBlank, CornersIn } from '@phosphor-icons/react'
@@ -15,33 +13,16 @@ interface CircuitBrowserProps {
 
 export function CircuitBrowser({ circuits, onBack, onCircuitSelect }: CircuitBrowserProps) {
   const [selectedCircuitId, setSelectedCircuitId] = useState<string | null>(null)
-  const [loadedCircuit, setLoadedCircuit] = useState<Circuit | null>(null)
-  const [loadingProgress, setLoadingProgress] = useState(0)
-  const [isLoadingWiki, setIsLoadingWiki] = useState(false)
-
-  useEffect(() => {
-    if (selectedCircuitId) {
-      setIsLoadingWiki(true)
-      setLoadingProgress(0)
-      
-      loadCircuitWithWikipedia(selectedCircuitId, (progress) => {
-        setLoadingProgress(progress * 100)
-      }).then(circuit => {
-        setLoadedCircuit(circuit)
-        setIsLoadingWiki(false)
-        if (circuit && onCircuitSelect) {
-          onCircuitSelect(circuit)
-        }
-      })
-    }
-  }, [selectedCircuitId, onCircuitSelect])
 
   const handleCircuitClick = (circuitId: string) => {
     setSelectedCircuitId(circuitId)
-    setLoadedCircuit(null)
+    const circuit = circuits.find(c => c.id === circuitId)
+    if (circuit && onCircuitSelect) {
+      onCircuitSelect(circuit)
+    }
   }
 
-  const displayCircuit = loadedCircuit || circuits.find(c => c.id === selectedCircuitId)
+  const displayCircuit = circuits.find(c => c.id === selectedCircuitId)
 
   return (
     <div className="space-y-6">
@@ -92,7 +73,7 @@ export function CircuitBrowser({ circuits, onBack, onCircuitSelect }: CircuitBro
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  {displayCircuit.length && displayCircuit.length !== 'Loading...' && (
+                  {displayCircuit.length && (
                     <Badge variant="secondary" className="gap-1">
                       <Timer size={14} />
                       {displayCircuit.length}
@@ -112,16 +93,7 @@ export function CircuitBrowser({ circuits, onBack, onCircuitSelect }: CircuitBro
                   )}
                 </div>
 
-                {isLoadingWiki && (
-                  <div className="space-y-2">
-                    <div className="text-sm text-muted-foreground">
-                      Loading information from Wikipedia...
-                    </div>
-                    <Progress value={loadingProgress} className="h-2" />
-                  </div>
-                )}
-
-                {!isLoadingWiki && displayCircuit.facts && displayCircuit.facts.length > 0 && (
+                {displayCircuit.facts && displayCircuit.facts.length > 0 && (
                   <div className="space-y-2">
                     <h4 className="font-medium">About this circuit</h4>
                     <ul className="space-y-2 text-sm text-muted-foreground">

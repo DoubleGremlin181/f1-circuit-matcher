@@ -23,22 +23,22 @@ A web application that challenges users to draw shapes that match Formula 1 circ
 - **Functionality**: Compares user's drawn shape against real F1 circuit layouts stored locally in the repository using configurable similarity algorithms
 - **Purpose**: Core game mechanic that determines which circuit best matches the user's drawing using authentic track data
 - **Trigger**: User completes a closed shape on canvas
-- **Progression**: Shape completed → normalize both shapes → apply selected algorithm (Hausdorff distance, Frechet distance, or turning angle) → rank circuits by similarity → display top match with percentage → show circuit overlay → fetch Wikipedia data with progress indicator
-- **Success criteria**: Returns results instantly (circuits pre-loaded), shows match percentage, displays top match with overlay visualization, loads Wikipedia facts with visible progress bar
+- **Progression**: Shape completed → normalize both shapes → apply selected algorithm (Hausdorff distance, Frechet distance, or turning angle) → rank circuits by similarity → display top match with percentage → show circuit overlay
+- **Success criteria**: Returns results instantly (circuits pre-loaded), shows match percentage, displays top match with overlay visualization
 
 ### Circuit Information Display
-- **Functionality**: Shows detailed information and facts about matched circuits with data dynamically fetched from Wikipedia with visible loading progress
-- **Purpose**: Educational component that rewards users with current and accurate F1 knowledge
+- **Functionality**: Shows detailed information and facts about matched circuits with pre-loaded circuit data
+- **Purpose**: Educational component that rewards users with F1 knowledge
 - **Trigger**: Matching algorithm completes or user selects a circuit in browse mode
-- **Progression**: Match found → show loading progress bar → fetch Wikipedia summary via API → display circuit name, location, and layout → show live facts from Wikipedia → display circuit statistics
-- **Success criteria**: Each circuit displays Wikipedia-sourced information with visible progress indicator, graceful fallback if Wikipedia unavailable, information is easily readable with accurate data
+- **Progression**: Match found → display circuit name, location, and layout → show interesting facts → display circuit statistics (length, corners, lap record, first GP)
+- **Success criteria**: Each circuit displays pre-loaded information, information is easily readable with accurate data
 
 ### Circuit Browser
-- **Functionality**: Browse all available F1 circuits with interactive selection and detailed Wikipedia information
+- **Functionality**: Browse all available F1 circuits with interactive selection and detailed information
 - **Purpose**: Allows users to explore and learn about all circuits without needing to draw
 - **Trigger**: User clicks "Browse" button in header
-- **Progression**: Click browse → view list of all circuits → select circuit → see loading progress bar → display circuit layout on canvas → show Wikipedia facts and stats below
-- **Success criteria**: All circuits visible in scrollable list, circuit layout renders correctly on canvas, Wikipedia data loads with progress indicator, smooth navigation back to drawing mode
+- **Progression**: Click browse → view list of all circuits → select circuit → display circuit layout on canvas → show facts and stats below
+- **Success criteria**: All circuits visible in scrollable list, circuit layout renders correctly on canvas, circuit data displays instantly, smooth navigation back to drawing mode
 
 ### Dark Mode Toggle
 - **Functionality**: Switches between light and dark themes with persistent preference
@@ -69,10 +69,7 @@ A web application that challenges users to draw shapes that match Formula 1 circ
 - **No match found**: Show "No close match" message with encouragement to try again
 - **Touch palm rejection**: Prevent accidental touches from registering as drawing input
 - **Rapid redrawing**: Debounce matching algorithm to prevent performance issues
-- **Data storage**: Circuit layouts stored locally in repository, no external loading required
-- **Wikipedia loading**: Show progress bar while fetching facts from Wikipedia API
-- **API failures**: Graceful fallback to minimal circuit info if Wikipedia API fails
-- **Network errors**: Handle Wikipedia API timeouts with user-friendly messages and progress indication
+- **Data storage**: Circuit layouts and facts stored locally in repository, no external loading required
 
 ## Design Direction
 
