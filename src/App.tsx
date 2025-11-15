@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useKV } from '@github/spark/hooks'
 import { DrawingCanvas } from '@/components/DrawingCanvas'
 import { CircuitCard } from '@/components/CircuitCard'
@@ -8,7 +8,8 @@ import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Toaster } from 'sonner'
 import { X, Flag, Pencil } from '@phosphor-icons/react'
-import { Circuit, circuits } from '@/lib/circuits'
+import { Circuit } from '@/lib/circuits'
+import { loadAllCircuits } from '@/lib/circuit-loader'
 import { matchShape, MatchAlgorithm, Point } from '@/lib/matching'
 
 interface MatchedCircuit {
@@ -22,8 +23,23 @@ function App() {
   const [key, setKey] = useState(0)
   const [selectedCircuitId, setSelectedCircuitId] = useState<string>('')
   const [hasDrawn, setHasDrawn] = useState(false)
+  const [circuits, setCircuits] = useState<Circuit[]>([])
+  const [isLoading, setIsLoading] = useState(true)
 
   const currentAlgorithm = algorithm || 'hausdorff'
+
+  useEffect(() => {
+    loadAllCircuits()
+      .then(loadedCircuits => {
+        setCircuits(loadedCircuits)
+        setIsLoading(false)
+      })
+      .catch(error => {
+        console.error('Failed to load circuits:', error)
+        setCircuits([])
+        setIsLoading(false)
+      })
+  }, [])
 
   const handleDrawingComplete = (points: Point[]) => {
     if (points.length < 10) {
@@ -110,78 +126,97 @@ function App() {
           </div>
         </header>
 
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-medium">Draw or Browse</h2>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleClear}
-                className="gap-2"
-              >
-                <X size={16} />
-                Clear
+        {isLoading ? (
+          <div className="flex items-center justify-center py-20">
+            <div className="text-center space-y-4">
+              <Flag size={64} weight="duotone" className="mx-auto text-primary animate-pulse" />
+              <p className="text-lg text-muted-foreground">Loading F1 circuits from GitHub...</p>
+            </div>
+          </div>
+        ) : circuits.length === 0 ? (
+          <div className="flex items-center justify-center py-20">
+            <div className="text-center space-y-4">
+              <Flag size={64} weight="duotone" className="mx-auto text-muted-foreground" />
+              <p className="text-lg text-muted-foreground">Failed to load circuits</p>
+              <Button onClick={() => window.location.reload()} variant="outline">
+                Retry
               </Button>
             </div>
-
-            <Select value={selectedCircuitId} onValueChange={handleCircuitSelect}>
-              <SelectTrigger className="w-full h-12 text-base">
-                <SelectValue placeholder="Select a circuit to view or draw below" />
-              </SelectTrigger>
-              <SelectContent>
-                {circuits.map(circuit => (
-                  <SelectItem key={circuit.id} value={circuit.id} className="text-base">
-                    <div className="flex flex-col">
-                      <span className="font-medium">{circuit.name}</span>
-                      <span className="text-xs text-muted-foreground">{circuit.location}</span>
-                    </div>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-
-            <DrawingCanvas 
-              key={key} 
-              onDrawingComplete={handleDrawingComplete}
-              overlayCircuit={overlayCircuitPoints}
-            />
-            <div className="flex items-center justify-between gap-4">
-              <p className="text-sm text-muted-foreground flex items-center gap-2">
-                <Pencil size={16} weight="duotone" />
-                {selectedCircuitId 
-                  ? 'Circuit displayed above - draw to compare' 
-                  : 'Draw a closed shape or select a circuit above'}
-              </p>
-            </div>
           </div>
+        ) : (
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-medium">Draw or Browse</h2>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleClear}
+                  className="gap-2"
+                >
+                  <X size={16} />
+                  Clear
+                </Button>
+              </div>
 
-          <div className="space-y-4">
-            <h2 className="text-lg font-medium">
-              {matchedCircuit 
-                ? 'Best Match' 
-                : selectedCircuitId
-                ? 'Circuit Details'
-                : 'Your Match'}
-            </h2>
-            {currentCircuit ? (
-              <CircuitCard 
-                circuit={currentCircuit} 
-                matchPercentage={displayPercentage}
+              <Select value={selectedCircuitId} onValueChange={handleCircuitSelect}>
+                <SelectTrigger className="w-full h-12 text-base">
+                  <SelectValue placeholder="Select a circuit to view or draw below" />
+                </SelectTrigger>
+                <SelectContent>
+                  {circuits.map(circuit => (
+                    <SelectItem key={circuit.id} value={circuit.id} className="text-base">
+                      <div className="flex flex-col">
+                        <span className="font-medium">{circuit.name}</span>
+                        <span className="text-xs text-muted-foreground">{circuit.location}</span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              <DrawingCanvas 
+                key={key} 
+                onDrawingComplete={handleDrawingComplete}
+                overlayCircuit={overlayCircuitPoints}
               />
-            ) : (
-              <div className="border-2 border-dashed border-border rounded-lg p-12 text-center">
-                <Flag size={48} weight="duotone" className="mx-auto mb-4 text-muted-foreground" />
-                <p className="text-muted-foreground text-lg font-medium mb-2">
-                  No circuit selected
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Draw a circuit shape or select a circuit to see details
+              <div className="flex items-center justify-between gap-4">
+                <p className="text-sm text-muted-foreground flex items-center gap-2">
+                  <Pencil size={16} weight="duotone" />
+                  {selectedCircuitId 
+                    ? 'Circuit displayed above - draw to compare' 
+                    : 'Draw a closed shape or select a circuit above'}
                 </p>
               </div>
-            )}
+            </div>
+
+            <div className="space-y-4">
+              <h2 className="text-lg font-medium">
+                {matchedCircuit 
+                  ? 'Best Match' 
+                  : selectedCircuitId
+                  ? 'Circuit Details'
+                  : 'Your Match'}
+              </h2>
+              {currentCircuit ? (
+                <CircuitCard 
+                  circuit={currentCircuit} 
+                  matchPercentage={displayPercentage}
+                />
+              ) : (
+                <div className="border-2 border-dashed border-border rounded-lg p-12 text-center">
+                  <Flag size={48} weight="duotone" className="mx-auto mb-4 text-muted-foreground" />
+                  <p className="text-muted-foreground text-lg font-medium mb-2">
+                    No circuit selected
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Draw a circuit shape or select a circuit to see details
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   )
