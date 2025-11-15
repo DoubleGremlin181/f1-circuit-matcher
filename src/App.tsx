@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useKV } from '@github/spark/hooks'
 import { DrawingCanvas } from '@/components/DrawingCanvas'
 import { CircuitCard } from '@/components/CircuitCard'
@@ -8,8 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Toaster } from 'sonner'
 import { X, Flag, Pencil } from '@phosphor-icons/react'
-import { Circuit } from '@/lib/circuits'
-import { loadAllCircuits } from '@/lib/circuit-loader'
+import { Circuit, circuits } from '@/lib/circuits'
 import { matchShape, MatchAlgorithm, Point } from '@/lib/matching'
 
 interface MatchedCircuit {
@@ -21,16 +20,10 @@ function App() {
   const [algorithm, setAlgorithm] = useKV<MatchAlgorithm>('match-algorithm', 'hausdorff')
   const [matchedCircuit, setMatchedCircuit] = useState<MatchedCircuit | null>(null)
   const [key, setKey] = useState(0)
-  const [circuits, setCircuits] = useState<Circuit[]>([])
   const [selectedCircuitId, setSelectedCircuitId] = useState<string>('')
   const [hasDrawn, setHasDrawn] = useState(false)
 
   const currentAlgorithm = algorithm || 'hausdorff'
-
-  useEffect(() => {
-    const loadedCircuits = loadAllCircuits()
-    setCircuits(loadedCircuits)
-  }, [])
 
   const handleDrawingComplete = (points: Point[]) => {
     if (points.length < 10) {
@@ -87,6 +80,10 @@ function App() {
   const displayPercentage = matchedCircuit ? matchedCircuit.similarity : 100
 
   const showOverlay = selectedCircuitId && !hasDrawn
+  
+  const overlayCircuitPoints = showOverlay && currentCircuit 
+    ? [...currentCircuit.layout, currentCircuit.layout[0]]
+    : undefined
 
   return (
     <div className="min-h-screen bg-background">
@@ -147,7 +144,7 @@ function App() {
             <DrawingCanvas 
               key={key} 
               onDrawingComplete={handleDrawingComplete}
-              overlayCircuit={showOverlay ? currentCircuit?.layout : undefined}
+              overlayCircuit={overlayCircuitPoints}
             />
             <div className="flex items-center justify-between gap-4">
               <p className="text-sm text-muted-foreground flex items-center gap-2">
