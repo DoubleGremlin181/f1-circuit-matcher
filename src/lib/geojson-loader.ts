@@ -29,6 +29,12 @@ interface CircuitMetadata {
   lapRecord?: string
   firstGP?: string
   corners?: number
+  totalRaces?: number
+  yearRange?: string
+  mostWins?: {
+    driver: string
+    wins: number
+  }
 }
 
 const GITHUB_API_BASE = 'https://api.github.com/repos/bacinger/f1-circuits/contents/circuits'
@@ -47,7 +53,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Known for unpredictable weather conditions'
     ],
     length: '5.278 km',
-    corners: 14
+    corners: 14,
+    firstGP: '1996',
+    totalRaces: 26,
+    yearRange: '1996-2024',
+    mostWins: {
+      driver: 'Michael Schumacher',
+      wins: 4
+    }
   },
   'americas': {
     name: 'Circuit of the Americas',
@@ -61,7 +74,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Hosts the United States Grand Prix since 2012'
     ],
     length: '5.513 km',
-    corners: 20
+    corners: 20,
+    firstGP: '2012',
+    totalRaces: 12,
+    yearRange: '2012-2024',
+    mostWins: {
+      driver: 'Lewis Hamilton',
+      wins: 6
+    }
   },
   'bahrain': {
     name: 'Bahrain International Circuit',
@@ -75,7 +95,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Hosts extensive F1 pre-season testing'
     ],
     length: '5.412 km',
-    corners: 15
+    corners: 15,
+    firstGP: '2004',
+    totalRaces: 20,
+    yearRange: '2004-2024',
+    mostWins: {
+      driver: 'Lewis Hamilton',
+      wins: 5
+    }
   },
   'baku': {
     name: 'Baku City Circuit',
@@ -89,7 +116,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Tight castle section contrasts with high-speed straights'
     ],
     length: '6.003 km',
-    corners: 20
+    corners: 20,
+    firstGP: '2016',
+    totalRaces: 8,
+    yearRange: '2016-2024',
+    mostWins: {
+      driver: 'Sergio Pérez',
+      wins: 2
+    }
   },
   'catalunya': {
     name: 'Circuit de Barcelona-Catalunya',
@@ -103,7 +137,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Hosts the Spanish Grand Prix'
     ],
     length: '4.675 km',
-    corners: 16
+    corners: 16,
+    firstGP: '1991',
+    totalRaces: 33,
+    yearRange: '1991-2024',
+    mostWins: {
+      driver: 'Michael Schumacher',
+      wins: 6
+    }
   },
   'hockenheim': {
     name: 'Hockenheimring',
@@ -117,7 +158,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Historic venue with rich motorsport heritage'
     ],
     length: '4.574 km',
-    corners: 17
+    corners: 17,
+    firstGP: '1970',
+    totalRaces: 36,
+    yearRange: '1970-2019',
+    mostWins: {
+      driver: 'Michael Schumacher',
+      wins: 4
+    }
   },
   'hungaroring': {
     name: 'Hungaroring',
@@ -128,10 +176,17 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Twisty, low-speed circuit often compared to Monaco',
       'Difficult to overtake, qualifying position is crucial',
       'Dusty surface off-line creates unique challenges',
-      '热summer temperatures test driver endurance'
+      'Hot summer temperatures test driver endurance'
     ],
     length: '4.381 km',
-    corners: 14
+    corners: 14,
+    firstGP: '1986',
+    totalRaces: 38,
+    yearRange: '1986-2024',
+    mostWins: {
+      driver: 'Lewis Hamilton',
+      wins: 8
+    }
   },
   'imola': {
     name: 'Autodromo Enzo e Dino Ferrari',
@@ -145,7 +200,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Returned to the F1 calendar in 2020'
     ],
     length: '4.909 km',
-    corners: 19
+    corners: 19,
+    firstGP: '1980',
+    totalRaces: 31,
+    yearRange: '1980-2024',
+    mostWins: {
+      driver: 'Michael Schumacher',
+      wins: 7
+    }
   },
   'interlagos': {
     name: 'Autódromo José Carlos Pace',
@@ -159,7 +221,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'The passionate Brazilian crowd creates an electric atmosphere'
     ],
     length: '4.309 km',
-    corners: 15
+    corners: 15,
+    firstGP: '1973',
+    totalRaces: 49,
+    yearRange: '1973-2024',
+    mostWins: {
+      driver: 'Alain Prost',
+      wins: 6
+    }
   },
   'jeddah': {
     name: 'Jeddah Corniche Circuit',
@@ -173,7 +242,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Debuted in 2021 as part of Saudi Arabian Grand Prix'
     ],
     length: '6.174 km',
-    corners: 27
+    corners: 27,
+    firstGP: '2021',
+    totalRaces: 4,
+    yearRange: '2021-2024',
+    mostWins: {
+      driver: 'Max Verstappen',
+      wins: 2
+    }
   },
   'marina-bay': {
     name: 'Marina Bay Street Circuit',
@@ -187,7 +263,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Safety car appearances are common'
     ],
     length: '4.940 km',
-    corners: 19
+    corners: 19,
+    firstGP: '2008',
+    totalRaces: 15,
+    yearRange: '2008-2024',
+    mostWins: {
+      driver: 'Sebastian Vettel',
+      wins: 5
+    }
   },
   'miami': {
     name: 'Miami International Autodrome',
@@ -201,7 +284,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Part of F1\'s expansion in the United States'
     ],
     length: '5.412 km',
-    corners: 19
+    corners: 19,
+    firstGP: '2022',
+    totalRaces: 3,
+    yearRange: '2022-2024',
+    mostWins: {
+      driver: 'Max Verstappen',
+      wins: 3
+    }
   },
   'monaco': {
     name: 'Circuit de Monaco',
@@ -211,11 +301,18 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'The most prestigious race in F1',
       'Slowest track but most demanding on concentration',
       'Virtually unchanged since 1929',
-      'Ayrton Senna won here 6 times',
+      'Only street circuit to host F1 every year since 1955',
       'The Swimming Pool complex is iconic'
     ],
     length: '3.337 km',
-    corners: 19
+    corners: 19,
+    firstGP: '1950',
+    totalRaces: 69,
+    yearRange: '1950-2024',
+    mostWins: {
+      driver: 'Ayrton Senna',
+      wins: 6
+    }
   },
   'monza': {
     name: 'Autodromo Nazionale di Monza',
@@ -229,7 +326,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Located in a royal park near Milan'
     ],
     length: '5.793 km',
-    corners: 11
+    corners: 11,
+    firstGP: '1950',
+    totalRaces: 73,
+    yearRange: '1950-2024',
+    mostWins: {
+      driver: 'Lewis Hamilton',
+      wins: 5
+    }
   },
   'red-bull-ring': {
     name: 'Red Bull Ring',
@@ -243,7 +347,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Stunning alpine scenery surrounds the track'
     ],
     length: '4.318 km',
-    corners: 10
+    corners: 10,
+    firstGP: '1970',
+    totalRaces: 38,
+    yearRange: '1970-2024',
+    mostWins: {
+      driver: 'Max Verstappen',
+      wins: 4
+    }
   },
   'ricard': {
     name: 'Circuit Paul Ricard',
@@ -257,7 +368,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Returned to F1 calendar in 2018'
     ],
     length: '5.842 km',
-    corners: 15
+    corners: 15,
+    firstGP: '1971',
+    totalRaces: 18,
+    yearRange: '1971-2022',
+    mostWins: {
+      driver: 'Alain Prost',
+      wins: 4
+    }
   },
   'rodriguez': {
     name: 'Autódromo Hermanos Rodríguez',
@@ -271,7 +389,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Peraltada corner is one of the most challenging'
     ],
     length: '4.304 km',
-    corners: 17
+    corners: 17,
+    firstGP: '1963',
+    totalRaces: 23,
+    yearRange: '1963-2024',
+    mostWins: {
+      driver: 'Lewis Hamilton',
+      wins: 4
+    }
   },
   'sakhir': {
     name: 'Bahrain International Circuit (Outer)',
@@ -285,7 +410,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Tests car setup differently than main layout'
     ],
     length: '3.543 km',
-    corners: 11
+    corners: 11,
+    firstGP: '2020',
+    totalRaces: 1,
+    yearRange: '2020',
+    mostWins: {
+      driver: 'Sergio Pérez',
+      wins: 1
+    }
   },
   'saudi-arabia': {
     name: 'Jeddah Corniche Circuit',
@@ -299,7 +431,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Debuted in 2021'
     ],
     length: '6.174 km',
-    corners: 27
+    corners: 27,
+    firstGP: '2021',
+    totalRaces: 4,
+    yearRange: '2021-2024',
+    mostWins: {
+      driver: 'Max Verstappen',
+      wins: 2
+    }
   },
   'shanghai': {
     name: 'Shanghai International Circuit',
@@ -313,7 +452,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Can experience all four seasons in one day'
     ],
     length: '5.451 km',
-    corners: 16
+    corners: 16,
+    firstGP: '2004',
+    totalRaces: 19,
+    yearRange: '2004-2024',
+    mostWins: {
+      driver: 'Lewis Hamilton',
+      wins: 6
+    }
   },
   'silverstone': {
     name: 'Silverstone Circuit',
@@ -323,11 +469,18 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Home of British Grand Prix and birthplace of F1',
       'Built on a former RAF bomber station',
       'Copse, Maggotts, and Becketts are iconic fast corners',
-      'Lewis Hamilton has won here a record 8 times',
+      'Hosted the first ever Formula 1 World Championship race',
       'Hosts over 140,000 fans on race day'
     ],
     length: '5.891 km',
-    corners: 18
+    corners: 18,
+    firstGP: '1950',
+    totalRaces: 57,
+    yearRange: '1950-2024',
+    mostWins: {
+      driver: 'Lewis Hamilton',
+      wins: 8
+    }
   },
   'sochi': {
     name: 'Sochi Autodrom',
@@ -341,7 +494,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'No longer on the F1 calendar'
     ],
     length: '5.848 km',
-    corners: 18
+    corners: 18,
+    firstGP: '2014',
+    totalRaces: 8,
+    yearRange: '2014-2021',
+    mostWins: {
+      driver: 'Lewis Hamilton',
+      wins: 4
+    }
   },
   'spa': {
     name: 'Circuit de Spa-Francorchamps',
@@ -351,11 +511,18 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Longest track on the F1 calendar',
       'Infamous for unpredictable weather',
       'Eau Rouge-Raidillon is one of the most feared corners',
-      'Michael Schumacher\'s first F1 victory in 1992',
+      'Historic venue dating back to 1925',
       '100 meters of elevation change'
     ],
     length: '7.004 km',
-    corners: 19
+    corners: 19,
+    firstGP: '1950',
+    totalRaces: 56,
+    yearRange: '1950-2024',
+    mostWins: {
+      driver: 'Michael Schumacher',
+      wins: 6
+    }
   },
   'suzuka': {
     name: 'Suzuka International Racing Course',
@@ -369,7 +536,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Enthusiastic fans create incredible grandstand displays'
     ],
     length: '5.807 km',
-    corners: 18
+    corners: 18,
+    firstGP: '1987',
+    totalRaces: 36,
+    yearRange: '1987-2024',
+    mostWins: {
+      driver: 'Michael Schumacher',
+      wins: 6
+    }
   },
   'vegas': {
     name: 'Las Vegas Street Circuit',
@@ -383,7 +557,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Debuted in 2023 as part of Las Vegas Grand Prix'
     ],
     length: '6.120 km',
-    corners: 17
+    corners: 17,
+    firstGP: '2023',
+    totalRaces: 2,
+    yearRange: '2023-2024',
+    mostWins: {
+      driver: 'Max Verstappen',
+      wins: 2
+    }
   },
   'villeneuve': {
     name: 'Circuit Gilles Villeneuve',
@@ -397,7 +578,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Hosts the Canadian Grand Prix'
     ],
     length: '4.361 km',
-    corners: 14
+    corners: 14,
+    firstGP: '1978',
+    totalRaces: 43,
+    yearRange: '1978-2024',
+    mostWins: {
+      driver: 'Lewis Hamilton',
+      wins: 7
+    }
   },
   'yas-marina': {
     name: 'Yas Marina Circuit',
@@ -411,7 +599,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Redesigned in 2021 to improve racing'
     ],
     length: '5.281 km',
-    corners: 16
+    corners: 16,
+    firstGP: '2009',
+    totalRaces: 15,
+    yearRange: '2009-2024',
+    mostWins: {
+      driver: 'Lewis Hamilton',
+      wins: 5
+    }
   },
   'zandvoort': {
     name: 'Circuit Zandvoort',
@@ -425,7 +620,14 @@ const circuitMetadata: Record<string, CircuitMetadata> = {
       'Close to beach dunes in coastal setting'
     ],
     length: '4.259 km',
-    corners: 14
+    corners: 14,
+    firstGP: '1952',
+    totalRaces: 34,
+    yearRange: '1952-2024',
+    mostWins: {
+      driver: 'Jim Clark',
+      wins: 4
+    }
   }
 }
 
@@ -491,7 +693,10 @@ function parseGeoJSON(geojson: GeoJSONCollection, circuitId: string): Circuit | 
     length: metadata.length || 'Unknown',
     lapRecord: metadata.lapRecord,
     firstGP: metadata.firstGP,
-    corners: metadata.corners || layout.length
+    corners: metadata.corners || layout.length,
+    totalRaces: metadata.totalRaces,
+    yearRange: metadata.yearRange,
+    mostWins: metadata.mostWins
   }
 }
 

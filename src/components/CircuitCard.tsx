@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
-import { Flag, MapPin } from '@phosphor-icons/react'
+import { Flag, MapPin, Trophy, Calendar } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 
 interface CircuitCardProps {
@@ -67,6 +67,50 @@ export function CircuitCard({ circuit, matchPercentage }: CircuitCardProps) {
               </Badge>
             )}
           </div>
+
+          {(circuit.totalRaces || circuit.yearRange || circuit.mostWins) && (
+            <>
+              <Separator />
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {circuit.totalRaces && (
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-1.5 text-muted-foreground text-xs font-medium uppercase tracking-wide">
+                      <Flag size={14} weight="duotone" />
+                      Total Races
+                    </div>
+                    <div className="text-2xl font-bold text-primary">
+                      {circuit.totalRaces}
+                    </div>
+                  </div>
+                )}
+                {circuit.yearRange && (
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-1.5 text-muted-foreground text-xs font-medium uppercase tracking-wide">
+                      <Calendar size={14} weight="duotone" />
+                      Years Active
+                    </div>
+                    <div className="text-2xl font-bold text-primary">
+                      {circuit.yearRange}
+                    </div>
+                  </div>
+                )}
+                {circuit.mostWins && (
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-1.5 text-muted-foreground text-xs font-medium uppercase tracking-wide">
+                      <Trophy size={14} weight="duotone" />
+                      Most Wins
+                    </div>
+                    <div className="text-base font-bold text-primary">
+                      {circuit.mostWins.driver}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {circuit.mostWins.wins} {circuit.mostWins.wins === 1 ? 'win' : 'wins'}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </>
+          )}
 
           {circuit.facts && circuit.facts.length > 0 && (
             <>

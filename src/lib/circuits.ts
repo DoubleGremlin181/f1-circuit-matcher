@@ -9,5 +9,11 @@ export interface Circuit {
   lapRecord?: string
   firstGP?: string
   corners: number
+  totalRaces?: number
+  yearRange?: string
+  mostWins?: {
+    driver: string
+    wins: number
+  }
 }
 
