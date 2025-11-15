@@ -48,9 +48,13 @@ export function DrawingCanvas({ onDrawingComplete, disabled = false, overlayCirc
     const primaryColor = `oklch(${rootStyles.getPropertyValue('--primary').trim()})`
     const accentColor = `oklch(${rootStyles.getPropertyValue('--accent').trim()})`
 
-    if (overlayCircuit && overlayCircuit.length > 0 && points.length > 0) {
-      const alignedCircuit = alignCircuitToDrawing(overlayCircuit, points)
-      drawPath(ctx, alignedCircuit, rect.width, rect.height, accentColor, 2.5, [5, 5])
+    if (overlayCircuit && overlayCircuit.length > 0) {
+      if (points.length > 0) {
+        const alignedCircuit = alignCircuitToDrawing(overlayCircuit, points)
+        drawPath(ctx, alignedCircuit, rect.width, rect.height, accentColor, 2.5, [5, 5])
+      } else {
+        drawPath(ctx, overlayCircuit, rect.width, rect.height, primaryColor, 3)
+      }
     }
 
     if (points.length > 0) {

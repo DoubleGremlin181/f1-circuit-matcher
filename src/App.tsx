@@ -7,7 +7,7 @@ import { ThemeToggle } from '@/components/ThemeToggle'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Toaster } from 'sonner'
-import { X, Flag } from '@phosphor-icons/react'
+import { X, Flag, Pencil } from '@phosphor-icons/react'
 import { Circuit } from '@/lib/circuits'
 import { loadAllCircuits } from '@/lib/circuit-loader'
 import { matchShape, MatchAlgorithm, Point } from '@/lib/matching'
@@ -17,15 +17,13 @@ interface MatchedCircuit {
   similarity: number
 }
 
-type DisplayMode = 'draw' | 'browse'
-
 function App() {
   const [algorithm, setAlgorithm] = useKV<MatchAlgorithm>('match-algorithm', 'hausdorff')
   const [matchedCircuit, setMatchedCircuit] = useState<MatchedCircuit | null>(null)
   const [key, setKey] = useState(0)
   const [circuits, setCircuits] = useState<Circuit[]>([])
-  const [displayMode, setDisplayMode] = useState<DisplayMode>('draw')
   const [selectedCircuitId, setSelectedCircuitId] = useState<string>('')
+  const [hasDrawn, setHasDrawn] = useState(false)
 
   const currentAlgorithm = algorithm || 'hausdorff'
 
@@ -42,6 +40,9 @@ function App() {
     if (circuits.length === 0) {
       return
     }
+
+    setHasDrawn(true)
+    setSelectedCircuitId('')
 
     const matches = circuits.map(circuit => ({
       circuitId: circuit.id,
@@ -61,8 +62,8 @@ function App() {
 
   const handleClear = () => {
     setMatchedCircuit(null)
-    setDisplayMode('draw')
     setSelectedCircuitId('')
+    setHasDrawn(false)
     setKey(prev => prev + 1)
   }
 
@@ -72,19 +73,20 @@ function App() {
 
   const handleCircuitSelect = (circuitId: string) => {
     setSelectedCircuitId(circuitId)
-    setDisplayMode('browse')
     setMatchedCircuit(null)
+    setHasDrawn(false)
+    setKey(prev => prev + 1)
   }
 
-  const currentCircuit = displayMode === 'draw' && matchedCircuit
+  const currentCircuit = matchedCircuit
     ? circuits.find(c => c.id === matchedCircuit.circuitId)
-    : displayMode === 'browse' && selectedCircuitId
+    : selectedCircuitId
     ? circuits.find(c => c.id === selectedCircuitId)
     : null
 
-  const displayPercentage = displayMode === 'draw' && matchedCircuit
-    ? matchedCircuit.similarity
-    : 100
+  const displayPercentage = matchedCircuit ? matchedCircuit.similarity : 100
+
+  const showOverlay = selectedCircuitId && !hasDrawn
 
   return (
     <div className="min-h-screen bg-background">
@@ -114,9 +116,7 @@ function App() {
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-medium">
-                {displayMode === 'draw' ? 'Draw Your Circuit' : 'Browse Circuits'}
-              </h2>
+              <h2 className="text-lg font-medium">Draw or Browse</h2>
               <Button
                 variant="outline"
                 size="sm"
@@ -128,53 +128,42 @@ function App() {
               </Button>
             </div>
 
-            {displayMode === 'browse' ? (
-              <Select value={selectedCircuitId} onValueChange={handleCircuitSelect}>
-                <SelectTrigger className="w-full h-12 text-base">
-                  <SelectValue placeholder="Select a circuit to view" />
-                </SelectTrigger>
-                <SelectContent>
-                  {circuits.map(circuit => (
-                    <SelectItem key={circuit.id} value={circuit.id} className="text-base">
-                      <div className="flex flex-col">
-                        <span className="font-medium">{circuit.name}</span>
-                        <span className="text-xs text-muted-foreground">{circuit.location}</span>
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            ) : null}
+            <Select value={selectedCircuitId} onValueChange={handleCircuitSelect}>
+              <SelectTrigger className="w-full h-12 text-base">
+                <SelectValue placeholder="Select a circuit to view or draw below" />
+              </SelectTrigger>
+              <SelectContent>
+                {circuits.map(circuit => (
+                  <SelectItem key={circuit.id} value={circuit.id} className="text-base">
+                    <div className="flex flex-col">
+                      <span className="font-medium">{circuit.name}</span>
+                      <span className="text-xs text-muted-foreground">{circuit.location}</span>
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
 
             <DrawingCanvas 
               key={key} 
               onDrawingComplete={handleDrawingComplete}
-              overlayCircuit={currentCircuit?.layout}
+              overlayCircuit={showOverlay ? currentCircuit?.layout : undefined}
             />
             <div className="flex items-center justify-between gap-4">
-              <p className="text-sm text-muted-foreground">
-                {displayMode === 'draw' 
-                  ? 'Draw a closed shape with your finger or mouse' 
-                  : 'Circuit layout is displayed above'}
+              <p className="text-sm text-muted-foreground flex items-center gap-2">
+                <Pencil size={16} weight="duotone" />
+                {selectedCircuitId 
+                  ? 'Circuit displayed above - draw to compare' 
+                  : 'Draw a closed shape or select a circuit above'}
               </p>
-              {displayMode === 'draw' && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setDisplayMode('browse')}
-                  className="text-xs"
-                >
-                  or browse circuits
-                </Button>
-              )}
             </div>
           </div>
 
           <div className="space-y-4">
             <h2 className="text-lg font-medium">
-              {displayMode === 'draw' && matchedCircuit 
+              {matchedCircuit 
                 ? 'Best Match' 
-                : displayMode === 'browse' && currentCircuit
+                : selectedCircuitId
                 ? 'Circuit Details'
                 : 'Your Match'}
             </h2>
@@ -190,7 +179,7 @@ function App() {
                   No circuit selected
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Draw a circuit shape or browse circuits to see details
+                  Draw a circuit shape or select a circuit to see details
                 </p>
               </div>
             )}
