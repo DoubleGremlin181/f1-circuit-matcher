@@ -12,6 +12,7 @@ interface CircuitCardProps {
 }
 
 export function CircuitCard({ circuit, matchPercentage }: CircuitCardProps) {
+  const showMatchBadge = matchPercentage < 100
 
   return (
     <motion.div
@@ -31,12 +32,14 @@ export function CircuitCard({ circuit, matchPercentage }: CircuitCardProps) {
                 {circuit.location}
               </CardDescription>
             </div>
-            <Badge 
-              variant={matchPercentage >= 75 ? 'default' : 'secondary'}
-              className="text-lg px-3 py-1.5 font-semibold bg-accent text-accent-foreground"
-            >
-              {matchPercentage.toFixed(0)}%
-            </Badge>
+            {showMatchBadge && (
+              <Badge 
+                variant={matchPercentage >= 75 ? 'default' : 'secondary'}
+                className="text-lg px-3 py-1.5 font-semibold bg-accent text-accent-foreground"
+              >
+                {matchPercentage.toFixed(0)}%
+              </Badge>
+            )}
           </div>
         </CardHeader>
         

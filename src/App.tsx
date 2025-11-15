@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react'
 import { useKV } from '@github/spark/hooks'
 import { DrawingCanvas } from '@/components/DrawingCanvas'
 import { CircuitCard } from '@/components/CircuitCard'
-import { CircuitBrowser } from '@/components/CircuitBrowser'
 import { SettingsSheet } from '@/components/SettingsSheet'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { Button } from '@/components/ui/button'
-import { Toaster, toast } from 'sonner'
-import { X, Flag, ListBullets } from '@phosphor-icons/react'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Toaster } from 'sonner'
+import { X, Flag } from '@phosphor-icons/react'
 import { Circuit } from '@/lib/circuits'
 import { loadAllCircuits } from '@/lib/circuit-loader'
 import { matchShape, MatchAlgorithm, Point } from '@/lib/matching'
@@ -17,14 +17,15 @@ interface MatchedCircuit {
   similarity: number
 }
 
-type ViewMode = 'draw' | 'browse'
+type DisplayMode = 'draw' | 'browse'
 
 function App() {
   const [algorithm, setAlgorithm] = useKV<MatchAlgorithm>('match-algorithm', 'hausdorff')
   const [matchedCircuit, setMatchedCircuit] = useState<MatchedCircuit | null>(null)
   const [key, setKey] = useState(0)
   const [circuits, setCircuits] = useState<Circuit[]>([])
-  const [viewMode, setViewMode] = useState<ViewMode>('draw')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('draw')
+  const [selectedCircuitId, setSelectedCircuitId] = useState<string>('')
 
   const currentAlgorithm = algorithm || 'hausdorff'
 
@@ -35,12 +36,10 @@ function App() {
 
   const handleDrawingComplete = (points: Point[]) => {
     if (points.length < 10) {
-      toast.error('Draw a larger shape to match against circuits')
       return
     }
 
     if (circuits.length === 0) {
-      toast.error('Circuit data still loading, please wait...')
       return
     }
 
@@ -54,48 +53,38 @@ function App() {
     const bestMatch = matches[0]
     
     if (bestMatch.similarity < 20) {
-      toast.error('No close match found. Try drawing a different shape!')
       setMatchedCircuit(null)
     } else {
       setMatchedCircuit(bestMatch)
-      
-      if (bestMatch.similarity >= 75) {
-        toast.success('Excellent match! 🏁')
-      } else if (bestMatch.similarity >= 50) {
-        toast.success('Good match!')
-      } else {
-        toast('Match found')
-      }
     }
   }
 
   const handleClear = () => {
     setMatchedCircuit(null)
+    setDisplayMode('draw')
+    setSelectedCircuitId('')
     setKey(prev => prev + 1)
   }
 
   const handleAlgorithmChange = (newAlgorithm: MatchAlgorithm) => {
     setAlgorithm(newAlgorithm)
-    toast.success(`Switched to ${newAlgorithm.replace('-', ' ')} algorithm`)
   }
 
-  const currentCircuit = matchedCircuit 
+  const handleCircuitSelect = (circuitId: string) => {
+    setSelectedCircuitId(circuitId)
+    setDisplayMode('browse')
+    setMatchedCircuit(null)
+  }
+
+  const currentCircuit = displayMode === 'draw' && matchedCircuit
     ? circuits.find(c => c.id === matchedCircuit.circuitId)
+    : displayMode === 'browse' && selectedCircuitId
+    ? circuits.find(c => c.id === selectedCircuitId)
     : null
 
-  if (viewMode === 'browse') {
-    return (
-      <div className="min-h-screen bg-background">
-        <Toaster position="top-center" />
-        <div className="container max-w-7xl mx-auto p-4 md:p-6 lg:p-8">
-          <CircuitBrowser 
-            circuits={circuits} 
-            onBack={() => setViewMode('draw')}
-          />
-        </div>
-      </div>
-    )
-  }
+  const displayPercentage = displayMode === 'draw' && matchedCircuit
+    ? matchedCircuit.similarity
+    : 100
 
   return (
     <div className="min-h-screen bg-background">
@@ -116,15 +105,6 @@ function App() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setViewMode('browse')}
-                className="gap-2"
-              >
-                <ListBullets size={16} />
-                Browse
-              </Button>
               <ThemeToggle />
               <SettingsSheet algorithm={currentAlgorithm} onAlgorithmChange={handleAlgorithmChange} />
             </div>
@@ -134,7 +114,9 @@ function App() {
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-medium">Draw Your Circuit</h2>
+              <h2 className="text-lg font-medium">
+                {displayMode === 'draw' ? 'Draw Your Circuit' : 'Browse Circuits'}
+              </h2>
               <Button
                 variant="outline"
                 size="sm"
@@ -145,33 +127,70 @@ function App() {
                 Clear
               </Button>
             </div>
+
+            {displayMode === 'browse' ? (
+              <Select value={selectedCircuitId} onValueChange={handleCircuitSelect}>
+                <SelectTrigger className="w-full h-12 text-base">
+                  <SelectValue placeholder="Select a circuit to view" />
+                </SelectTrigger>
+                <SelectContent>
+                  {circuits.map(circuit => (
+                    <SelectItem key={circuit.id} value={circuit.id} className="text-base">
+                      <div className="flex flex-col">
+                        <span className="font-medium">{circuit.name}</span>
+                        <span className="text-xs text-muted-foreground">{circuit.location}</span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            ) : null}
+
             <DrawingCanvas 
               key={key} 
               onDrawingComplete={handleDrawingComplete}
               overlayCircuit={currentCircuit?.layout}
             />
-            <p className="text-sm text-muted-foreground text-center">
-              Draw a closed shape with your finger or mouse
-            </p>
+            <div className="flex items-center justify-between gap-4">
+              <p className="text-sm text-muted-foreground">
+                {displayMode === 'draw' 
+                  ? 'Draw a closed shape with your finger or mouse' 
+                  : 'Circuit layout is displayed above'}
+              </p>
+              {displayMode === 'draw' && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setDisplayMode('browse')}
+                  className="text-xs"
+                >
+                  or browse circuits
+                </Button>
+              )}
+            </div>
           </div>
 
           <div className="space-y-4">
             <h2 className="text-lg font-medium">
-              {matchedCircuit ? 'Best Match' : 'Your Match'}
+              {displayMode === 'draw' && matchedCircuit 
+                ? 'Best Match' 
+                : displayMode === 'browse' && currentCircuit
+                ? 'Circuit Details'
+                : 'Your Match'}
             </h2>
-            {currentCircuit && matchedCircuit ? (
+            {currentCircuit ? (
               <CircuitCard 
                 circuit={currentCircuit} 
-                matchPercentage={matchedCircuit.similarity}
+                matchPercentage={displayPercentage}
               />
             ) : (
               <div className="border-2 border-dashed border-border rounded-lg p-12 text-center">
                 <Flag size={48} weight="duotone" className="mx-auto mb-4 text-muted-foreground" />
                 <p className="text-muted-foreground text-lg font-medium mb-2">
-                  No match yet
+                  No circuit selected
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Draw a circuit shape to see matching results
+                  Draw a circuit shape or browse circuits to see details
                 </p>
               </div>
             )}
