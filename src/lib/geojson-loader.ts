@@ -1,4 +1,5 @@
 import { Circuit } from './circuits'
+import { scrapeWikipediaData } from './wikipedia-scraper'
 
 interface GeoJSONGeometry {
   type: string
@@ -20,614 +21,154 @@ interface GeoJSONCollection {
   features: GeoJSONFeature[]
 }
 
-interface CircuitMetadata {
+interface CircuitBasicInfo {
   name: string
   location: string
   country: string
-  facts: string[]
-  length?: string
-  lapRecord?: string
-  firstGP?: string
-  corners?: number
-  totalRaces?: number
-  yearRange?: string
-  mostWins?: {
-    driver: string
-    wins: number
-  }
 }
 
 const GITHUB_API_BASE = 'https://api.github.com/repos/bacinger/f1-circuits/contents/circuits'
-const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/bacinger/f1-circuits/main/circuits'
 
-const circuitMetadata: Record<string, CircuitMetadata> = {
+const circuitBasicInfo: Record<string, CircuitBasicInfo> = {
   'albert-park': {
     name: 'Albert Park Circuit',
     location: 'Melbourne, Australia',
-    country: 'Australia',
-    facts: [
-      'Street circuit located around Albert Park Lake',
-      'Home of the Australian Grand Prix since 1996',
-      'One of the fastest street circuits on the calendar',
-      'Features semi-permanent track facilities',
-      'Known for unpredictable weather conditions'
-    ],
-    length: '5.278 km',
-    corners: 14,
-    firstGP: '1996',
-    totalRaces: 26,
-    yearRange: '1996-2024',
-    mostWins: {
-      driver: 'Michael Schumacher',
-      wins: 4
-    }
+    country: 'Australia'
   },
   'americas': {
     name: 'Circuit of the Americas',
     location: 'Austin, Texas, USA',
-    country: 'United States',
-    facts: [
-      'First purpose-built F1 circuit in the United States',
-      'Turn 1 is one of the steepest uphill climbs in F1',
-      'Designed by Hermann Tilke with inspiration from classic circuits',
-      'Features a 251-foot observation tower',
-      'Hosts the United States Grand Prix since 2012'
-    ],
-    length: '5.513 km',
-    corners: 20,
-    firstGP: '2012',
-    totalRaces: 12,
-    yearRange: '2012-2024',
-    mostWins: {
-      driver: 'Lewis Hamilton',
-      wins: 6
-    }
+    country: 'United States'
   },
   'bahrain': {
     name: 'Bahrain International Circuit',
     location: 'Sakhir, Bahrain',
-    country: 'Bahrain',
-    facts: [
-      'First F1 circuit in the Middle East',
-      'Famous for night racing under floodlights',
-      'Built on desert land, creating unique challenges',
-      'Multiple layout configurations available',
-      'Hosts extensive F1 pre-season testing'
-    ],
-    length: '5.412 km',
-    corners: 15,
-    firstGP: '2004',
-    totalRaces: 20,
-    yearRange: '2004-2024',
-    mostWins: {
-      driver: 'Lewis Hamilton',
-      wins: 5
-    }
+    country: 'Bahrain'
   },
   'baku': {
     name: 'Baku City Circuit',
     location: 'Baku, Azerbaijan',
-    country: 'Azerbaijan',
-    facts: [
-      'One of the fastest street circuits in the world',
-      'Features the longest straight in F1 at 2.2 km',
-      'Runs through the historic Old Town of Baku',
-      'Known for dramatic racing and safety car periods',
-      'Tight castle section contrasts with high-speed straights'
-    ],
-    length: '6.003 km',
-    corners: 20,
-    firstGP: '2016',
-    totalRaces: 8,
-    yearRange: '2016-2024',
-    mostWins: {
-      driver: 'Sergio Pérez',
-      wins: 2
-    }
+    country: 'Azerbaijan'
   },
   'catalunya': {
     name: 'Circuit de Barcelona-Catalunya',
     location: 'Barcelona, Spain',
-    country: 'Spain',
-    facts: [
-      'Primary venue for F1 pre-season testing',
-      'All teams know this track extremely well',
-      'Challenging combination of high and low-speed corners',
-      'Modified in 2023 to improve overtaking opportunities',
-      'Hosts the Spanish Grand Prix'
-    ],
-    length: '4.675 km',
-    corners: 16,
-    firstGP: '1991',
-    totalRaces: 33,
-    yearRange: '1991-2024',
-    mostWins: {
-      driver: 'Michael Schumacher',
-      wins: 6
-    }
+    country: 'Spain'
   },
   'hockenheim': {
     name: 'Hockenheimring',
     location: 'Hockenheim, Germany',
-    country: 'Germany',
-    facts: [
-      'Originally featured long straights through forests',
-      'Redesigned in 2002 for better spectator viewing',
-      'Home of the German Grand Prix',
-      'Known for hot summer temperatures',
-      'Historic venue with rich motorsport heritage'
-    ],
-    length: '4.574 km',
-    corners: 17,
-    firstGP: '1970',
-    totalRaces: 36,
-    yearRange: '1970-2019',
-    mostWins: {
-      driver: 'Michael Schumacher',
-      wins: 4
-    }
+    country: 'Germany'
   },
   'hungaroring': {
     name: 'Hungaroring',
     location: 'Budapest, Hungary',
-    country: 'Hungary',
-    facts: [
-      'First F1 race behind the Iron Curtain in 1986',
-      'Twisty, low-speed circuit often compared to Monaco',
-      'Difficult to overtake, qualifying position is crucial',
-      'Dusty surface off-line creates unique challenges',
-      'Hot summer temperatures test driver endurance'
-    ],
-    length: '4.381 km',
-    corners: 14,
-    firstGP: '1986',
-    totalRaces: 38,
-    yearRange: '1986-2024',
-    mostWins: {
-      driver: 'Lewis Hamilton',
-      wins: 8
-    }
+    country: 'Hungary'
   },
   'imola': {
     name: 'Autodromo Enzo e Dino Ferrari',
     location: 'Imola, Italy',
-    country: 'Italy',
-    facts: [
-      'Named after Enzo Ferrari and his son Dino',
-      'Historic circuit with passionate Italian fans',
-      'Site of tragic 1994 San Marino Grand Prix',
-      'Challenging old-school layout with fast corners',
-      'Returned to the F1 calendar in 2020'
-    ],
-    length: '4.909 km',
-    corners: 19,
-    firstGP: '1980',
-    totalRaces: 31,
-    yearRange: '1980-2024',
-    mostWins: {
-      driver: 'Michael Schumacher',
-      wins: 7
-    }
+    country: 'Italy'
   },
   'interlagos': {
     name: 'Autódromo José Carlos Pace',
     location: 'São Paulo, Brazil',
-    country: 'Brazil',
-    facts: [
-      'Run counter-clockwise, one of only a few circuits with this direction',
-      'Named after Brazilian F1 driver José Carlos Pace',
-      'Scene of many dramatic championship deciders',
-      'Significant elevation changes make it physically demanding',
-      'The passionate Brazilian crowd creates an electric atmosphere'
-    ],
-    length: '4.309 km',
-    corners: 15,
-    firstGP: '1973',
-    totalRaces: 49,
-    yearRange: '1973-2024',
-    mostWins: {
-      driver: 'Alain Prost',
-      wins: 6
-    }
+    country: 'Brazil'
   },
   'jeddah': {
     name: 'Jeddah Corniche Circuit',
     location: 'Jeddah, Saudi Arabia',
-    country: 'Saudi Arabia',
-    facts: [
-      'Fastest street circuit in the world',
-      'Features 27 corners and high-speed sections',
-      'Night race along the Red Sea coast',
-      'Barrier-lined with minimal run-off areas',
-      'Debuted in 2021 as part of Saudi Arabian Grand Prix'
-    ],
-    length: '6.174 km',
-    corners: 27,
-    firstGP: '2021',
-    totalRaces: 4,
-    yearRange: '2021-2024',
-    mostWins: {
-      driver: 'Max Verstappen',
-      wins: 2
-    }
+    country: 'Saudi Arabia'
   },
   'marina-bay': {
     name: 'Marina Bay Street Circuit',
     location: 'Singapore',
-    country: 'Singapore',
-    facts: [
-      'First night race in F1 history',
-      'Bumpy street circuit around Marina Bay',
-      'High humidity and heat challenge drivers',
-      'Stunning cityscape backdrop',
-      'Safety car appearances are common'
-    ],
-    length: '4.940 km',
-    corners: 19,
-    firstGP: '2008',
-    totalRaces: 15,
-    yearRange: '2008-2024',
-    mostWins: {
-      driver: 'Sebastian Vettel',
-      wins: 5
-    }
+    country: 'Singapore'
   },
   'miami': {
     name: 'Miami International Autodrome',
     location: 'Miami, Florida, USA',
-    country: 'United States',
-    facts: [
-      'Built around Hard Rock Stadium',
-      'Features artificial marina and beach club',
-      'Fast corners and long straights',
-      'Debuted in 2022 as part of Miami Grand Prix',
-      'Part of F1\'s expansion in the United States'
-    ],
-    length: '5.412 km',
-    corners: 19,
-    firstGP: '2022',
-    totalRaces: 3,
-    yearRange: '2022-2024',
-    mostWins: {
-      driver: 'Max Verstappen',
-      wins: 3
-    }
+    country: 'United States'
   },
   'monaco': {
     name: 'Circuit de Monaco',
     location: 'Monte Carlo, Monaco',
-    country: 'Monaco',
-    facts: [
-      'The most prestigious race in F1',
-      'Slowest track but most demanding on concentration',
-      'Virtually unchanged since 1929',
-      'Only street circuit to host F1 every year since 1955',
-      'The Swimming Pool complex is iconic'
-    ],
-    length: '3.337 km',
-    corners: 19,
-    firstGP: '1950',
-    totalRaces: 69,
-    yearRange: '1950-2024',
-    mostWins: {
-      driver: 'Ayrton Senna',
-      wins: 6
-    }
+    country: 'Monaco'
   },
   'monza': {
     name: 'Autodromo Nazionale di Monza',
     location: 'Monza, Italy',
-    country: 'Italy',
-    facts: [
-      'Known as the "Temple of Speed"',
-      'Fastest track in F1 with high average speeds',
-      'Home to the legendary Tifosi',
-      'Features historic banked curves from 1922',
-      'Located in a royal park near Milan'
-    ],
-    length: '5.793 km',
-    corners: 11,
-    firstGP: '1950',
-    totalRaces: 73,
-    yearRange: '1950-2024',
-    mostWins: {
-      driver: 'Lewis Hamilton',
-      wins: 5
-    }
+    country: 'Italy'
   },
   'red-bull-ring': {
     name: 'Red Bull Ring',
     location: 'Spielberg, Austria',
-    country: 'Austria',
-    facts: [
-      'Shortest lap on the F1 calendar',
-      'Set in the Styrian mountains',
-      'Only 10 corners but extremely challenging',
-      'Steep elevation changes throughout',
-      'Stunning alpine scenery surrounds the track'
-    ],
-    length: '4.318 km',
-    corners: 10,
-    firstGP: '1970',
-    totalRaces: 38,
-    yearRange: '1970-2024',
-    mostWins: {
-      driver: 'Max Verstappen',
-      wins: 4
-    }
+    country: 'Austria'
   },
   'ricard': {
     name: 'Circuit Paul Ricard',
     location: 'Le Castellet, France',
-    country: 'France',
-    facts: [
-      'Famous for distinctive blue and red run-off areas',
-      'Mistral Straight is one of the longest in F1',
-      'Extensive run-off areas for safety',
-      'Used as a major testing facility',
-      'Returned to F1 calendar in 2018'
-    ],
-    length: '5.842 km',
-    corners: 15,
-    firstGP: '1971',
-    totalRaces: 18,
-    yearRange: '1971-2022',
-    mostWins: {
-      driver: 'Alain Prost',
-      wins: 4
-    }
+    country: 'France'
   },
   'rodriguez': {
     name: 'Autódromo Hermanos Rodríguez',
     location: 'Mexico City, Mexico',
-    country: 'Mexico',
-    facts: [
-      'High altitude (2,200m) reduces engine power',
-      'Thin air affects aerodynamics and cooling',
-      'Named after Rodriguez brothers, both racing drivers',
-      'Passionate Mexican fans create incredible atmosphere',
-      'Peraltada corner is one of the most challenging'
-    ],
-    length: '4.304 km',
-    corners: 17,
-    firstGP: '1963',
-    totalRaces: 23,
-    yearRange: '1963-2024',
-    mostWins: {
-      driver: 'Lewis Hamilton',
-      wins: 4
-    }
+    country: 'Mexico'
   },
   'sakhir': {
     name: 'Bahrain International Circuit (Outer)',
     location: 'Sakhir, Bahrain',
-    country: 'Bahrain',
-    facts: [
-      'Alternative "Outer" layout used for special events',
-      'Features extremely long back straight',
-      'Used for the 2020 Sakhir Grand Prix',
-      'Ultra-fast lap times under 55 seconds',
-      'Tests car setup differently than main layout'
-    ],
-    length: '3.543 km',
-    corners: 11,
-    firstGP: '2020',
-    totalRaces: 1,
-    yearRange: '2020',
-    mostWins: {
-      driver: 'Sergio Pérez',
-      wins: 1
-    }
+    country: 'Bahrain'
   },
   'saudi-arabia': {
     name: 'Jeddah Corniche Circuit',
     location: 'Jeddah, Saudi Arabia',
-    country: 'Saudi Arabia',
-    facts: [
-      'Fastest street circuit in the world',
-      'Features 27 corners and high-speed sections',
-      'Night race along the Red Sea coast',
-      'Barrier-lined with minimal run-off areas',
-      'Debuted in 2021'
-    ],
-    length: '6.174 km',
-    corners: 27,
-    firstGP: '2021',
-    totalRaces: 4,
-    yearRange: '2021-2024',
-    mostWins: {
-      driver: 'Max Verstappen',
-      wins: 2
-    }
+    country: 'Saudi Arabia'
   },
   'shanghai': {
     name: 'Shanghai International Circuit',
     location: 'Shanghai, China',
-    country: 'China',
-    facts: [
-      'Designed to resemble the Chinese character "shang"',
-      'Extremely long back straight for overtaking',
-      'Unique snail-shaped Turn 1-2-3 complex',
-      'Hosted Chinese Grand Prix since 2004',
-      'Can experience all four seasons in one day'
-    ],
-    length: '5.451 km',
-    corners: 16,
-    firstGP: '2004',
-    totalRaces: 19,
-    yearRange: '2004-2024',
-    mostWins: {
-      driver: 'Lewis Hamilton',
-      wins: 6
-    }
+    country: 'China'
   },
   'silverstone': {
     name: 'Silverstone Circuit',
     location: 'Silverstone, England',
-    country: 'United Kingdom',
-    facts: [
-      'Home of British Grand Prix and birthplace of F1',
-      'Built on a former RAF bomber station',
-      'Copse, Maggotts, and Becketts are iconic fast corners',
-      'Hosted the first ever Formula 1 World Championship race',
-      'Hosts over 140,000 fans on race day'
-    ],
-    length: '5.891 km',
-    corners: 18,
-    firstGP: '1950',
-    totalRaces: 57,
-    yearRange: '1950-2024',
-    mostWins: {
-      driver: 'Lewis Hamilton',
-      wins: 8
-    }
+    country: 'United Kingdom'
   },
   'sochi': {
     name: 'Sochi Autodrom',
     location: 'Sochi, Russia',
-    country: 'Russia',
-    facts: [
-      'Built around 2014 Winter Olympics venue',
-      'Long, fast corners around Olympic Park',
-      'Challenging Turn 3 tests bravery',
-      'Hosted Russian Grand Prix 2014-2021',
-      'No longer on the F1 calendar'
-    ],
-    length: '5.848 km',
-    corners: 18,
-    firstGP: '2014',
-    totalRaces: 8,
-    yearRange: '2014-2021',
-    mostWins: {
-      driver: 'Lewis Hamilton',
-      wins: 4
-    }
+    country: 'Russia'
   },
   'spa': {
     name: 'Circuit de Spa-Francorchamps',
     location: 'Spa, Belgium',
-    country: 'Belgium',
-    facts: [
-      'Longest track on the F1 calendar',
-      'Infamous for unpredictable weather',
-      'Eau Rouge-Raidillon is one of the most feared corners',
-      'Historic venue dating back to 1925',
-      '100 meters of elevation change'
-    ],
-    length: '7.004 km',
-    corners: 19,
-    firstGP: '1950',
-    totalRaces: 56,
-    yearRange: '1950-2024',
-    mostWins: {
-      driver: 'Michael Schumacher',
-      wins: 6
-    }
+    country: 'Belgium'
   },
   'suzuka': {
     name: 'Suzuka International Racing Course',
     location: 'Suzuka, Japan',
-    country: 'Japan',
-    facts: [
-      'Only figure-eight circuit on the calendar',
-      'Designed by Dutch legend John Hugenholtz',
-      'The 130R corner is one of the fastest',
-      'Famous Senna-Prost collisions in 1989 and 1990',
-      'Enthusiastic fans create incredible grandstand displays'
-    ],
-    length: '5.807 km',
-    corners: 18,
-    firstGP: '1987',
-    totalRaces: 36,
-    yearRange: '1987-2024',
-    mostWins: {
-      driver: 'Michael Schumacher',
-      wins: 6
-    }
+    country: 'Japan'
   },
   'vegas': {
     name: 'Las Vegas Street Circuit',
     location: 'Las Vegas, Nevada, USA',
-    country: 'United States',
-    facts: [
-      'Night race through the Las Vegas Strip',
-      'Features iconic landmarks like the Sphere',
-      'Long straights with high top speeds',
-      'Saturday night race for prime entertainment value',
-      'Debuted in 2023 as part of Las Vegas Grand Prix'
-    ],
-    length: '6.120 km',
-    corners: 17,
-    firstGP: '2023',
-    totalRaces: 2,
-    yearRange: '2023-2024',
-    mostWins: {
-      driver: 'Max Verstappen',
-      wins: 2
-    }
+    country: 'United States'
   },
   'villeneuve': {
     name: 'Circuit Gilles Villeneuve',
     location: 'Montreal, Canada',
-    country: 'Canada',
-    facts: [
-      'Named after legendary Canadian driver Gilles Villeneuve',
-      'Semi-permanent circuit on Île Notre-Dame',
-      'Wall of Champions claims many victims',
-      'High-speed straights and heavy braking zones',
-      'Hosts the Canadian Grand Prix'
-    ],
-    length: '4.361 km',
-    corners: 14,
-    firstGP: '1978',
-    totalRaces: 43,
-    yearRange: '1978-2024',
-    mostWins: {
-      driver: 'Lewis Hamilton',
-      wins: 7
-    }
+    country: 'Canada'
   },
   'yas-marina': {
     name: 'Yas Marina Circuit',
     location: 'Abu Dhabi, UAE',
-    country: 'United Arab Emirates',
-    facts: [
-      'Twilight race with stunning lighting transition',
-      'Features the iconic Yas Hotel bridge',
-      'Multiple track configuration options',
-      'Often hosts the season finale',
-      'Redesigned in 2021 to improve racing'
-    ],
-    length: '5.281 km',
-    corners: 16,
-    firstGP: '2009',
-    totalRaces: 15,
-    yearRange: '2009-2024',
-    mostWins: {
-      driver: 'Lewis Hamilton',
-      wins: 5
-    }
+    country: 'United Arab Emirates'
   },
   'zandvoort': {
     name: 'Circuit Zandvoort',
     location: 'Zandvoort, Netherlands',
-    country: 'Netherlands',
-    facts: [
-      'Historic seaside circuit returned to F1 in 2021',
-      'Features heavily banked corners added for F1 return',
-      'Narrow track makes overtaking challenging',
-      'Orange Army of Dutch fans creates electric atmosphere',
-      'Close to beach dunes in coastal setting'
-    ],
-    length: '4.259 km',
-    corners: 14,
-    firstGP: '1952',
-    totalRaces: 34,
-    yearRange: '1952-2024',
-    mostWins: {
-      driver: 'Jim Clark',
-      wins: 4
-    }
+    country: 'Netherlands'
   }
 }
 
@@ -661,7 +202,7 @@ function getBounds(coords: number[][]): { minLon: number; maxLon: number; minLat
   }
 }
 
-function parseGeoJSON(geojson: GeoJSONCollection, circuitId: string): Circuit | null {
+async function parseGeoJSON(geojson: GeoJSONCollection, circuitId: string): Promise<Circuit | null> {
   if (!geojson.features || geojson.features.length === 0) {
     return null
   }
@@ -676,27 +217,30 @@ function parseGeoJSON(geojson: GeoJSONCollection, circuitId: string): Circuit | 
   const bounds = getBounds(coords)
   const layout = coords.map(coord => projectTo2D(coord[0], coord[1], bounds))
 
-  const metadata = circuitMetadata[circuitId] || {
+  const basicInfo = circuitBasicInfo[circuitId] || {
     name: feature.properties?.Name || feature.properties?.name || circuitId,
     location: 'Unknown',
-    country: 'Unknown',
-    facts: ['F1 racing circuit']
+    country: 'Unknown'
   }
+
+  console.log(`Fetching Wikipedia data for ${circuitId}...`)
+  const wikiData = await scrapeWikipediaData(circuitId)
+  console.log(`Wikipedia data for ${circuitId}:`, wikiData)
 
   return {
     id: circuitId,
-    name: metadata.name,
-    location: metadata.location,
-    country: metadata.country,
+    name: basicInfo.name,
+    location: basicInfo.location,
+    country: basicInfo.country,
     layout,
-    facts: metadata.facts,
-    length: metadata.length || 'Unknown',
-    lapRecord: metadata.lapRecord,
-    firstGP: metadata.firstGP,
-    corners: metadata.corners || layout.length,
-    totalRaces: metadata.totalRaces,
-    yearRange: metadata.yearRange,
-    mostWins: metadata.mostWins
+    facts: wikiData.facts.length > 0 ? wikiData.facts : ['Formula 1 racing circuit'],
+    length: wikiData.length || 'Unknown',
+    lapRecord: wikiData.lapRecord,
+    firstGP: wikiData.firstGP,
+    corners: wikiData.corners || layout.length,
+    totalRaces: wikiData.totalRaces,
+    yearRange: wikiData.yearRange,
+    mostWins: wikiData.mostWins
   }
 }
 
@@ -715,7 +259,7 @@ export async function loadCircuitFromGitHub(circuitId: string): Promise<Circuit 
       }
 
       const geojson = await response.json() as GeoJSONCollection
-      const circuit = parseGeoJSON(geojson, circuitId)
+      const circuit = await parseGeoJSON(geojson, circuitId)
       if (circuit) {
         console.log(`Successfully loaded circuit: ${circuitId} from branch ${branch}`)
         return circuit
@@ -764,7 +308,7 @@ export async function loadAllCircuitsFromGitHub(): Promise<Circuit[]> {
     circuitIdsToLoad = availableCircuits
   } else {
     console.log('Circuit discovery failed, using predefined list')
-    circuitIdsToLoad = Object.keys(circuitMetadata)
+    circuitIdsToLoad = Object.keys(circuitBasicInfo)
   }
   
   console.log(`Attempting to load ${circuitIdsToLoad.length} circuits...`)

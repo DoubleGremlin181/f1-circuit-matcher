@@ -5,9 +5,10 @@ interface DrawingCanvasProps {
   onDrawingComplete: (points: Point[]) => void
   disabled?: boolean
   overlayCircuit?: Point[]
+  onDrawingStart?: () => void
 }
 
-export function DrawingCanvas({ onDrawingComplete, disabled = false, overlayCircuit }: DrawingCanvasProps) {
+export function DrawingCanvas({ onDrawingComplete, disabled = false, overlayCircuit, onDrawingStart }: DrawingCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [isDrawing, setIsDrawing] = useState(false)
   const [points, setPoints] = useState<Point[]>([])
@@ -110,6 +111,10 @@ export function DrawingCanvas({ onDrawingComplete, disabled = false, overlayCirc
 
     canvas.setPointerCapture(e.pointerId)
     setIsDrawing(true)
+    
+    if (onDrawingStart) {
+      onDrawingStart()
+    }
     
     const point = getPointFromEvent(e)
     setPoints([point])

@@ -44,6 +44,12 @@ function App() {
       })
   }, [])
 
+  const handleDrawingStart = () => {
+    if (selectedCircuitId) {
+      setSelectedCircuitId('')
+    }
+  }
+
   const handleDrawingComplete = (points: Point[]) => {
     if (points.length < 10) {
       return
@@ -192,6 +198,7 @@ function App() {
               <DrawingCanvas 
                 key={key} 
                 onDrawingComplete={handleDrawingComplete}
+                onDrawingStart={handleDrawingStart}
                 overlayCircuit={overlayCircuitPoints}
               />
               <div className="flex items-center justify-between gap-4">
