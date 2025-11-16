@@ -7,12 +7,9 @@ import { motion } from 'framer-motion'
 
 interface CircuitCardProps {
   circuit: Circuit
-  matchPercentage: number
 }
 
-export function CircuitCard({ circuit, matchPercentage }: CircuitCardProps) {
-  const showMatchBadge = matchPercentage < 100
-  
+export function CircuitCard({ circuit }: CircuitCardProps) {
   // Physical characteristics of the track
   const hasPhysicalStats = circuit.length || (circuit.corners && circuit.corners > 0)
   

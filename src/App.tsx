@@ -91,8 +91,6 @@ function App() {
     ? circuits.find(c => c.id === selectedCircuitId)
     : null
 
-  const displayPercentage = matchedCircuit ? matchedCircuit.similarity : 100
-
   const showOverlay = matchedCircuit || (selectedCircuitId && !hasDrawn)
   
   const overlayCircuitPoints = showOverlay && currentCircuit
@@ -200,7 +198,6 @@ function App() {
               {currentCircuit ? (
                 <CircuitCard 
                   circuit={currentCircuit} 
-                  matchPercentage={displayPercentage}
                 />
               ) : (
                 <div className="border-2 border-dashed border-border rounded-lg p-12 text-center">
