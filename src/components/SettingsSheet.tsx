@@ -29,7 +29,7 @@ export function SettingsSheet({ algorithm, onAlgorithmChange }: SettingsSheetPro
         
         <Separator className="my-4" />
         
-        <div className="space-y-6">
+        <div className="space-y-6 px-4">
           <div className="space-y-3">
             <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
               Matching Algorithm
