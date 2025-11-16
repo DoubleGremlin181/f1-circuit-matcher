@@ -6,6 +6,7 @@ import { SettingsSheet } from '@/components/SettingsSheet'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { Logo } from '@/components/Logo'
 import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Toaster } from 'sonner'
 import { X, Flag, Pencil } from '@phosphor-icons/react'
@@ -179,13 +180,23 @@ function App() {
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-lg font-medium">
-                {matchedCircuit 
-                  ? 'Best Match' 
-                  : selectedCircuitId
-                  ? 'Circuit Details'
-                  : 'Your Match'}
-              </h2>
+              <div className="flex items-center gap-2">
+                <h2 className="text-lg font-medium">
+                  {matchedCircuit 
+                    ? 'Best Match' 
+                    : selectedCircuitId
+                    ? 'Circuit Details'
+                    : 'Your Match'}
+                </h2>
+                {matchedCircuit && matchedCircuit.similarity < 100 && (
+                  <Badge 
+                    variant={matchedCircuit.similarity >= 75 ? 'default' : 'secondary'}
+                    className="text-lg px-3 py-1.5 font-semibold bg-accent text-accent-foreground"
+                  >
+                    {matchedCircuit.similarity.toFixed(0)}%
+                  </Badge>
+                )}
+              </div>
               {currentCircuit ? (
                 <CircuitCard 
                   circuit={currentCircuit} 
