@@ -46,25 +46,29 @@ function App() {
     setHasDrawn(true)
     setSelectedCircuitId('')
 
-    const matches = circuits.map(circuit => {
-      // Close the circuit layout by adding the first point at the end
-      // This ensures consistency with the drawn points which are already closed
-      const closedCircuitLayout = [...circuit.layout, circuit.layout[0]]
-      return {
-        circuitId: circuit.id,
-        similarity: matchShape(points, closedCircuitLayout, currentAlgorithm)
+    // Add delay to match the drawing cleanup delay
+    // This ensures matching happens after self-intersection removal
+    setTimeout(() => {
+      const matches = circuits.map(circuit => {
+        // Close the circuit layout by adding the first point at the end
+        // This ensures consistency with the drawn points which are already closed
+        const closedCircuitLayout = [...circuit.layout, circuit.layout[0]]
+        return {
+          circuitId: circuit.id,
+          similarity: matchShape(points, closedCircuitLayout, currentAlgorithm)
+        }
+      })
+
+      matches.sort((a, b) => b.similarity - a.similarity)
+
+      const bestMatch = matches[0]
+      
+      if (bestMatch.similarity < 20) {
+        setMatchedCircuit(null)
+      } else {
+        setMatchedCircuit(bestMatch)
       }
-    })
-
-    matches.sort((a, b) => b.similarity - a.similarity)
-
-    const bestMatch = matches[0]
-    
-    if (bestMatch.similarity < 20) {
-      setMatchedCircuit(null)
-    } else {
-      setMatchedCircuit(bestMatch)
-    }
+    }, 500)
   }
 
   const handleClear = () => {
