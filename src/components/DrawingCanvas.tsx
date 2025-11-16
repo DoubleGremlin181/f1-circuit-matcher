@@ -52,15 +52,14 @@ export function DrawingCanvas({ onDrawingComplete, disabled = false, overlayCirc
     if (overlayCircuit && overlayCircuit.length > 0 && !isDrawing) {
       if (points.length > 0) {
         const alignedCircuit = alignCircuitToDrawing(overlayCircuit, points)
-        drawPath(ctx, alignedCircuit, rect.width, rect.height, accentColor, 2.5, [5, 5], false, true)
+        drawPath(ctx, alignedCircuit, rect.width, rect.height, accentColor, 2.5, [5, 5])
       } else {
-        drawPath(ctx, overlayCircuit, rect.width, rect.height, primaryColor, 3, [], true, true)
+        drawPath(ctx, overlayCircuit, rect.width, rect.height, primaryColor, 3, [], true)
       }
     }
 
     if (points.length > 0) {
-      // Close the path only when not actively drawing
-      drawPath(ctx, points, rect.width, rect.height, primaryColor, 3, [], false, !isDrawing)
+      drawPath(ctx, points, rect.width, rect.height, primaryColor, 3)
     }
   }, [points, overlayCircuit, theme, isDrawing])
 
@@ -72,8 +71,7 @@ export function DrawingCanvas({ onDrawingComplete, disabled = false, overlayCirc
     strokeStyle: string = 'oklch(0.55 0.22 25)',
     lineWidth: number = 3,
     lineDash: number[] = [],
-    addPadding: boolean = false,
-    closePath: boolean = true
+    addPadding: boolean = false
   ) => {
     if (pathPoints.length < 2) return
 
@@ -95,11 +93,6 @@ export function DrawingCanvas({ onDrawingComplete, disabled = false, overlayCirc
 
     for (let i = 1; i < pathPoints.length; i++) {
       ctx.lineTo(pathPoints[i].x * width * paddingFactor + offsetX, pathPoints[i].y * height * paddingFactor + offsetY)
-    }
-
-    // Close the path by connecting back to the start
-    if (closePath && pathPoints.length > 2) {
-      ctx.lineTo(pathPoints[0].x * width * paddingFactor + offsetX, pathPoints[0].y * height * paddingFactor + offsetY)
     }
 
     ctx.stroke()
