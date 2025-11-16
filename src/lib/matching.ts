@@ -37,80 +37,18 @@ export function getBoundingBox(points: Point[]): BoundingBox {
 }
 
 /**
- * Compute the centroid of a set of points
- */
-function getCentroid(points: Point[]): Point {
-  if (points.length === 0) return { x: 0, y: 0 }
-  
-  const sum = points.reduce((acc, p) => ({ x: acc.x + p.x, y: acc.y + p.y }), { x: 0, y: 0 })
-  return { x: sum.x / points.length, y: sum.y / points.length }
-}
-
-/**
- * Find the principal axis using PCA to determine canonical rotation
- */
-function getPrincipalAngle(points: Point[]): number {
-  if (points.length < 2) return 0
-  
-  const centroid = getCentroid(points)
-  
-  // Compute covariance matrix
-  let cxx = 0, cxy = 0, cyy = 0
-  for (const p of points) {
-    const dx = p.x - centroid.x
-    const dy = p.y - centroid.y
-    cxx += dx * dx
-    cxy += dx * dy
-    cyy += dy * dy
-  }
-  
-  cxx /= points.length
-  cxy /= points.length
-  cyy /= points.length
-  
-  // Find principal axis angle
-  // Eigenvalue decomposition of 2x2 symmetric matrix
-  const angle = 0.5 * Math.atan2(2 * cxy, cxx - cyy)
-  return angle
-}
-
-/**
- * Rotate points by a given angle around the origin
- */
-function rotatePoints(points: Point[], angle: number): Point[] {
-  const cos = Math.cos(angle)
-  const sin = Math.sin(angle)
-  
-  return points.map(p => ({
-    x: p.x * cos - p.y * sin,
-    y: p.x * sin + p.y * cos
-  }))
-}
-
-/**
- * Normalize points: translate to origin, scale to unit size, and rotate to canonical orientation
+ * Normalize points: translate to origin and scale to unit size
+ * Note: Does NOT apply rotation - preserves original orientation
  */
 function normalizePoints(points: Point[]): Point[] {
   if (points.length === 0) return []
   
-  // Center at origin
-  const centroid = getCentroid(points)
-  const centered = points.map(p => ({
-    x: p.x - centroid.x,
-    y: p.y - centroid.y
-  }))
-  
-  // Find principal axis and rotate to canonical orientation
-  const angle = getPrincipalAngle(centered)
-  const rotated = rotatePoints(centered, -angle)
-  
-  // Scale to unit size based on bounding box
-  const bbox = getBoundingBox(rotated)
+  const bbox = getBoundingBox(points)
   const scale = Math.max(bbox.width, bbox.height)
   
-  if (scale === 0) return rotated
+  if (scale === 0) return points
   
-  return rotated.map(p => ({
+  return points.map(p => ({
     x: (p.x - bbox.minX) / scale,
     y: (p.y - bbox.minY) / scale
   }))
