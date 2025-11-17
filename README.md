@@ -2,7 +2,7 @@
 
 Draw shapes and match them against real Formula 1 circuit layouts using shape recognition algorithms.
 
-🏎️ **[Live Demo: https://circuit-sketch.kavi.sh/](https://circuit-sketch.kavi.sh/)**
+🏎️ **[Live Demo: https://apps.kavi.sh/circuit-sketch/](https://apps.kavi.sh/circuit-sketch/)**
 
 ## Features
 
@@ -22,7 +22,7 @@ npm run dev
 
 ## Deployment
 
-The site is automatically deployed to GitHub Pages at [circuit-sketch.kavi.sh](https://circuit-sketch.kavi.sh/) on every push to the main branch via GitHub Actions.
+The site is automatically deployed to GitHub Pages at [apps.kavi.sh/circuit-sketch](https://apps.kavi.sh/circuit-sketch/) on every push to the main branch via GitHub Actions.
 
 **⚠️ First-time setup required:** To enable deployment, configure GitHub Pages in repository settings:
 
