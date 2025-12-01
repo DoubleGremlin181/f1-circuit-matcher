@@ -1,465 +1,417 @@
 {
   "monza": {
-    "facts": [
-      "The Autodromo Nazionale di Monza is a historic race track located near the city of Monza, north of Milan, in Italy.",
-      "It is one of the world's oldest automotive racing circuits, built in 1922.",
-      "The circuit is known as the Temple of Speed due to its high-speed characteristics and long straights.",
-      "Monza features historic banked sections that were used in the past but are now abandoned.",
-      "The Tifosi, passionate Italian Ferrari fans, create an incredible atmosphere during the Italian Grand Prix."
-    ],
-    "length": "5.793 km",
-    "corners": 11,
-    "firstGP": "1950",
-    "totalRaces": 73,
-    "yearRange": "1950-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Monza_Circuit",
-    "mostWins": {
-      "driver": "Michael Schumacher",
-      "wins": 5
-    }
+    "facts": []
   },
   "monaco": {
     "facts": [
-      "The Circuit de Monaco is a street circuit laid out on the city streets of Monte Carlo and La Condamine around the harbour of the Principality of Monaco.",
-      "It has been run since 1929 and is considered one of the most important and prestigious automobile races in the world.",
-      "The circuit is narrow with many elevation changes and tight corners, making it one of the most demanding tracks in Formula One.",
-      "Winning at Monaco is considered one of the greatest achievements in motorsport.",
-      "The circuit runs through the streets of Monaco with minimal run-off areas and barriers close to the track."
+      "Louis Chiron did it at the non-championship 1931 Monaco Grand Prix; 82 years later, Stefano Coletti crossed the line in first position at the sprint race of the 2013 Monaco GP2 Series round.",
+      "The race circuit is narrow, with many elevation shifts and tight corners.",
+      "These features make it perhaps the most demanding track in Formula One racing.",
+      "It contains both the slowest corner in Formula One (the Fairmont Hairpin, taken at just 48 km/h or 30 mph) and one of the quickest (the flat out kink in the tunnel, three turns beyond the hairpin, taken at 260 km/h or 160 mph).",
+      "This is a nearly 90-degree right-hand bend usually taken in first or second gear.",
+      "This corner has seen many first lap accidents, although these are less common since the removal of the mini roundabout on the apex of the corner before the 2003 event, making the entrance to the corner wider.",
+      "The cars then head uphill along Avenue d'Ostende, before changing down for the long left-hander at Massenet.",
+      "The maximum gradient in this part of the circuit is around 12%."
     ],
-    "length": "3.337 km",
-    "corners": 19,
-    "firstGP": "1950",
-    "totalRaces": 69,
-    "yearRange": "1950-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Circuit_de_Monaco",
-    "mostWins": {
-      "driver": "Ayrton Senna",
-      "wins": 6
-    }
+    "corners": 14,
+    "firstGP": "1929",
+    "lapRecord": "1:46.5 (Rudolf Caracciola, 1937)",
+    "yearRange": "2022-2025"
   },
   "silverstone": {
     "facts": [
-      "Silverstone Circuit is built on the site of a World War II Royal Air Force bomber station.",
-      "The circuit hosted the first ever Formula One World Championship race in 1950.",
-      "It is home to the British Grand Prix and is known for its high-speed corners.",
-      "Famous corners include Copse, Maggotts, Becketts, and the high-speed Stowe corner.",
-      "The circuit has undergone numerous changes over the years but maintains its fast and flowing character."
+      "Ronnie Peterson was second in March 711 from Emerson Fittipaldi in Lotus 72D; all were Cosworth-powered in what fast becoming Formula Super Ford; the race average was 130.5 mph (210.0 km/h).",
+      "1973 was the year that Jody Scheckter lost control of his McLaren at the completion of the first lap, spinning into the pit wall and setting in motion the biggest accident ever seen on a British motor racing circuit.",
+      "The race average speed had risen again to 131.75 mph (212.03 km/h).",
+      "The 1973 débâcle wrought changes upon Silverstone as it was deemed necessary to slow these cars through Woodcote, therefore a chicane was inserted.",
+      "The winner's average speed was 138.80 mph (223.38 km/h).",
+      "The first two were Lola T90/50 mounted, while the third-placed car was a Reynard 90D.",
+      "The first three places went to British cars, with Jaguar first and second from a Spice-Cosworth in the hands of Fermín Vélez and Bruno Giacomelli.",
+      "Nearly every part of Silverstone (except Copse, Abbey and all of the straights, save the Farm Straight) was redesigned."
     ],
-    "length": "5.891 km",
-    "corners": 18,
-    "firstGP": "1950",
-    "totalRaces": 57,
-    "yearRange": "1950-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Silverstone_Circuit",
-    "mostWins": {
-      "driver": "Lewis Hamilton",
-      "wins": 8
-    }
+    "corners": 17,
+    "firstGP": "1948",
+    "lapRecord": "2:52.0 (Luigi Villoresi, 1948)",
+    "yearRange": "1955-1986"
   },
   "spa": {
     "facts": [
-      "Circuit de Spa-Francorchamps is a motor-racing circuit located in Stavelot, Belgium.",
-      "It is the longest circuit on the current Formula One calendar at 7.004 kilometers.",
-      "The circuit is known for its fast, challenging, and high-speed nature, as well as its unpredictable weather.",
-      "The famous Eau Rouge and Raidillon complex is one of the most iconic corners in motorsport.",
-      "The circuit features significant elevation changes throughout its layout."
+      "It is also the host of the Uniroyal Fun Cup 25 Hours of Spa, one of the longest motor races in the world.",
+      "The first car race was held at the circuit in 1922, and 1924 saw the first running of the now famous 24 Hours of Francorchamps race.",
+      "The circuit was first used for Grand Prix racing in 1925.",
+      "The original Spa-Francorchamps circuit was essentially a speed course, with drivers managing higher average speeds than on other road race tracks.",
+      "Around 2001, a new bypass road N62c was built to the East, and the track was closed to the public as the road from Stavelot to Blanchimont became a cul-de-sac.",
+      "Near Malmedy, the Masta straight began, which was only interrupted by the Masta Kink between farm houses before arriving at the town of Stavelot.",
+      "Before the 1979 changes, Spa-Francorchamps was the fastest road circuit in Europe, and it had a reputation for being dangerous and very fast – it demanded calmness from drivers, and most were frightened of it.",
+      "The old Spa circuit was unique in that speeds were consistently high with hardly any let-up at all for three to four minutes."
     ],
-    "length": "7.004 km",
-    "corners": 19,
-    "firstGP": "1950",
-    "totalRaces": 54,
-    "yearRange": "1950-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Circuit_de_Spa-Francorchamps",
-    "mostWins": {
-      "driver": "Michael Schumacher",
-      "wins": 6
-    }
+    "corners": 25,
+    "firstGP": "1921",
+    "lapRecord": "5:04.100 (Hermann Lang, 1937)",
+    "yearRange": "1985-2025"
   },
   "suzuka": {
-    "facts": [
-      "Suzuka Circuit is a motorsport race track located in Ino, Suzuka City, Mie Prefecture, Japan.",
-      "It is one of the few circuits in the world to have a figure-eight layout.",
-      "The circuit was designed by Dutchman John Hugenholtz and built in 1962.",
-      "Famous corners include the 130R, Spoon Curve, and the first corner complex.",
-      "Suzuka is considered one of the most challenging and technical circuits in Formula One."
-    ],
-    "length": "5.807 km",
-    "corners": 18,
-    "firstGP": "1987",
-    "totalRaces": 35,
-    "yearRange": "1987-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Suzuka_International_Racing_Course",
-    "mostWins": {
-      "driver": "Michael Schumacher",
-      "wins": 6
-    }
+    "facts": []
   },
   "interlagos": {
-    "facts": [
-      "The Autódromo José Carlos Pace is located in the city of São Paulo, Brazil.",
-      "It is one of the few Formula One circuits to run counter-clockwise.",
-      "The circuit is known for its challenging layout with elevation changes and variable weather conditions.",
-      "Named after Brazilian Formula One driver José Carlos Pace, who died in a plane crash in 1977.",
-      "The circuit has produced many dramatic and memorable races due to its unique characteristics."
-    ],
-    "length": "4.309 km",
-    "corners": 15,
-    "firstGP": "1973",
-    "totalRaces": 48,
-    "yearRange": "1973-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace",
-    "mostWins": {
-      "driver": "Alain Prost",
-      "wins": 6
-    }
+    "facts": []
   },
   "albert-park": {
-    "facts": [
-      "The Melbourne Grand Prix Circuit is a street circuit around Albert Park Lake in Melbourne, Australia.",
-      "The circuit uses public roads that are opened to traffic when the race is not being held.",
-      "It has been the host of the Australian Grand Prix since 1996.",
-      "The circuit is known for its fast and flowing layout with high average speeds.",
-      "Features a mix of tight corners, chicanes, and fast straights around the picturesque park setting."
-    ],
-    "length": "5.278 km",
-    "corners": 14,
-    "firstGP": "1996",
-    "totalRaces": 26,
-    "yearRange": "1996-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Albert_Park_Circuit",
-    "mostWins": {
-      "driver": "Michael Schumacher",
-      "wins": 4
-    }
+    "facts": []
+  },
+  "albert_park": {
+    "facts": []
   },
   "americas": {
     "facts": [
-      "Circuit of the Americas is a Grade 1 FIA-specification race track in Austin, Texas.",
-      "It was the first purpose-built Formula One facility in the United States.",
-      "The circuit features dramatic elevation changes, with Turn 1 featuring a steep uphill climb.",
-      "The layout was designed to incorporate characteristics of several famous circuits from around the world.",
-      "COTA has hosted the United States Grand Prix since 2012."
+      "It previously hosted the Australian V8 Supercars, the Americas Rallycross Championship, the American Le Mans Series, the Rolex Sports Car Series, the IMSA SportsCar Championship and the IndyCar Classic.",
+      "The circuit and Grand Prix were first proposed in the middle of 2010.",
+      "The circuit was the first in the United States to be purpose-built for Formula One.",
+      "and Tilke Engineers & Architects designed the track, and Austin Commercial, a subsidiary of Austin Industries, was the general contractor.",
+      "The Grand Plaza, Observation Structure, Tower Amphitheater, and Main Grandstand were designed by Austin-based architectural firm Miró Rivera Architects.",
+      "The first tasks were building the silt fences, taking core samples, and shredding existing vegetation.",
+      "The first layer of asphalt was completed on August 3, 2012.",
+      "The track was officially opened on October 21, with Mario Andretti running the ceremonial first laps in a Lotus 79, the car he drove when he became the last American to win the World Drivers' Championship in 1978."
     ],
-    "length": "5.513 km",
-    "corners": 20,
+    "corners": 19,
     "firstGP": "2012",
-    "totalRaces": 11,
-    "yearRange": "2012-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Circuit_of_the_Americas",
-    "mostWins": {
-      "driver": "Lewis Hamilton",
-      "wins": 5
-    }
+    "lapRecord": "1:33.284",
+    "yearRange": "2014-2025"
   },
   "bahrain": {
     "facts": [
-      "Bahrain International Circuit is located in Sakhir, Bahrain.",
-      "It was the first Formula One Grand Prix to be held in the Middle East.",
-      "The circuit is set in a desert landscape and features state-of-the-art facilities.",
-      "Features long straights and heavy braking zones, making it challenging for both cars and drivers.",
-      "The circuit has multiple layout configurations and is equipped with floodlights for night racing."
+      "In 2011 the circuit was scheduled to be the first GP of the season.",
+      "2014 saw the track host its first ever Grand Prix under lights, as the race was scheduled as a night race to celebrate the tenth year of Formula 1 at the circuit.",
+      "The 2004 Grand Prix was the first  Formula One race held in the Middle East.",
+      "In the past the circuit has hosted the FIA GT Championship, Speedcar Series, Australian V8 Supercars, GP2 Asia Series, and a one-off Bahrain Superprix involving Formula Three cars, following on from the collapsed Korea Super Prix.",
+      "The first ever Formula BMW World Final took place in Bahrain."
     ],
-    "length": "5.412 km",
     "corners": 15,
     "firstGP": "2004",
-    "totalRaces": 19,
-    "yearRange": "2004-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Bahrain_International_Circuit",
-    "mostWins": {
-      "driver": "Lewis Hamilton",
-      "wins": 5
-    }
+    "lapRecord": "1:30.252 (Michael Schumacher, 2004)",
+    "yearRange": "2004-2009"
   },
   "baku": {
     "facts": [
-      "The Baku City Circuit is a street circuit in Baku, Azerbaijan.",
-      "It features one of the longest straights in Formula One at over 2 kilometers.",
-      "The circuit passes through the narrow streets of Baku's historic Old City and along the modern waterfront.",
-      "Despite being a street circuit, it has some of the highest top speeds in Formula One.",
-      "The contrast between the old city walls and modern architecture creates a unique backdrop."
+      "The circuit starts adjacent to Azadliq Square, then loops around Government House before heading west along a 1 km (0.62 mi) straight to the Palace of the Shirvanshahs and Maiden Tower.",
+      "Here, the track has a narrow 7.6 m (25 ft) uphill traversal and then circles the Old City before opening up onto a 2.2 km (1.4 mi) stretch along Neftchilar Avenue back to the start line.",
+      "The circuit was projected to be the fastest street circuit in the world, with a top speed close to 360 km/h (220 mph) and the second-longest circuit on the current F1 calendar, behind the Circuit de Spa-Francorchamps in Belgium.",
+      "Similarly, the first practice session of the 2019 Azerbaijan Grand Prix was cancelled when George Russell hit a loose drain cover.",
+      "Many drivers praised the circuit for the challenge offered by its mixture of long straights, slow technical sections and no margin for error due to the proximity of the walls.",
+      "In 2021, Rosberg criticised the location of the pit lane entrance adjacent to the 350 km/h (220 mph) main straight, calling it \"one of the places I always found the most dangerous of the whole year\".",
+      "The Baku City Circuit (Azerbaijani: Bakı Şəhər Halqası) is a motor racing street circuit located in Baku, Azerbaijan constructed near Baku Boulevard.",
+      "A lap of the circuit is 6.003 km (3.730 mi), making it the fourth-longest circuit on the Formula One calendar (after Circuit de Spa-Francorchamps, Jeddah Street Circuit and Las Vegas Strip Circuit)."
     ],
-    "length": "6.003 km",
     "corners": 20,
     "firstGP": "2016",
-    "totalRaces": 7,
-    "yearRange": "2016-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Baku_City_Circuit"
+    "lapRecord": "1:43.009 (Charles Leclerc, 2019)"
   },
   "catalunya": {
     "facts": [
-      "Circuit de Barcelona-Catalunya is located in Montmeló, Barcelona, Catalonia, Spain.",
-      "It has been the primary venue for Formula One pre-season testing for many years.",
-      "The circuit is known for its technical layout that tests all aspects of a car's performance.",
-      "Features a challenging mix of high-speed and low-speed corners.",
-      "The circuit has undergone several modifications to improve overtaking opportunities."
+      "When first used, overtaking was frequent as cars could follow closely through the last two corners and slipstream down the long straight.",
+      "As aerodynamic balance became more critical, this overtaking method drastically decreased as the cars were unable to follow each other through the fast final corner due to turbulence created by the leading car.",
+      "The 2007 season saw the first of the two final sweepers replaced with a slow chicane to reduce speeds through the final corner, where serious accidents could occur, and in an effort to improve overtaking.",
+      "The 2022 race was, until now, the last Formula One race to use the chicane, with the original configuration restored ahead of the 2023 race.",
+      "The circuit is not known to produce copious amounts of overtaking, despite the long straights.",
+      "Further changes were made to the circuit in December 2017 as grandstands were removed to add additional runoff that allowed the FIM to eliminate that chicane (although the Turn 10 hairpin was kept).",
+      "In 1991, Ayrton Senna and Nigel Mansell went down the entire front straight side by side while dueling for second place, with Mansell eventually taking the position and ultimately the race itself.",
+      "In 1996, Schumacher took his first win as a Ferrari driver, after a dominant performance during a torrential rainstorm."
     ],
-    "length": "4.675 km",
-    "corners": 16,
+    "corners": 14,
     "firstGP": "1991",
-    "totalRaces": 32,
-    "yearRange": "1991-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Circuit_de_Barcelona-Catalunya",
-    "mostWins": {
-      "driver": "Michael Schumacher",
-      "wins": 6
-    }
-  },
-  "hungaroring": {
-    "facts": [
-      "The Hungaroring is a motorsport race track in Mogyoród, Hungary.",
-      "It was the first Formula One race to be held behind the Iron Curtain in 1986.",
-      "The circuit is tight and twisty, often compared to a go-kart track on a larger scale.",
-      "Overtaking is notoriously difficult, making qualifying position and strategy crucial.",
-      "The circuit is set in a natural amphitheater with good viewing for spectators."
-    ],
-    "length": "4.381 km",
-    "corners": 14,
-    "firstGP": "1986",
-    "totalRaces": 38,
-    "yearRange": "1986-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Hungaroring",
-    "mostWins": {
-      "driver": "Lewis Hamilton",
-      "wins": 8
-    }
-  },
-  "imola": {
-    "facts": [
-      "The Autodromo Internazionale Enzo e Dino Ferrari is located in Imola, Italy.",
-      "The circuit is named after Enzo Ferrari and his son Alfredo 'Dino' Ferrari.",
-      "It features challenging corners including Tamburello, Villeneuve, and Variante Alta.",
-      "The circuit has a rich history in Formula One, having hosted many dramatic races.",
-      "Known for passionate Italian fans, particularly Ferrari supporters."
-    ],
-    "length": "4.909 km",
-    "corners": 19,
-    "firstGP": "1980",
-    "totalRaces": 28,
-    "yearRange": "1980-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Autodromo_Enzo_e_Dino_Ferrari"
-  },
-  "jeddah": {
-    "facts": [
-      "The Jeddah Corniche Circuit is a street circuit in Jeddah, Saudi Arabia.",
-      "It is the fastest street circuit in Formula One with average speeds exceeding 250 km/h.",
-      "The circuit runs along the Red Sea waterfront with stunning views.",
-      "Features high-speed corners and minimal run-off areas, making it extremely challenging.",
-      "The circuit has 27 corners, making it one of the most complex layouts on the calendar."
-    ],
-    "length": "6.174 km",
-    "corners": 27,
-    "firstGP": "2021",
-    "totalRaces": 3,
-    "yearRange": "2021-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Jeddah_Corniche_Circuit"
-  },
-  "marina-bay": {
-    "facts": [
-      "Marina Bay Street Circuit is a street circuit in Marina Bay, Singapore.",
-      "It was the first night race in Formula One history, held under floodlights.",
-      "The circuit is known for its bumpy surface and tight, twisting layout.",
-      "Features a stunning backdrop of Singapore's modern skyline and Marina Bay Sands.",
-      "The heat and humidity make it one of the most physically demanding races for drivers."
-    ],
-    "length": "4.940 km",
-    "corners": 19,
-    "firstGP": "2008",
-    "totalRaces": 15,
-    "yearRange": "2008-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Marina_Bay_Street_Circuit"
-  },
-  "miami": {
-    "facts": [
-      "Miami International Autodrome is a purpose-built circuit around Hard Rock Stadium in Miami Gardens, Florida.",
-      "The circuit made its debut on the Formula One calendar in 2022.",
-      "Features a complex of corners and a long straight down the front stretch.",
-      "The circuit incorporates the stadium parking lots and access roads.",
-      "Known for its party atmosphere and entertainment focus alongside the racing."
-    ],
-    "length": "5.412 km",
-    "corners": 19,
-    "firstGP": "2022",
-    "totalRaces": 2,
-    "yearRange": "2022-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Miami_International_Autodrome"
-  },
-  "red-bull-ring": {
-    "facts": [
-      "The Red Bull Ring is a motorsport race track in Spielberg, Styria, Austria.",
-      "It is the shortest lap on the current Formula One calendar.",
-      "Set in the scenic Styrian mountains with dramatic elevation changes.",
-      "Features a fast, flowing layout with good overtaking opportunities.",
-      "The circuit was originally known as the Österreichring and has a long racing history."
-    ],
-    "length": "4.318 km",
-    "corners": 10,
-    "firstGP": "1970",
-    "totalRaces": 36,
-    "yearRange": "1970-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Red_Bull_Ring",
-    "mostWins": {
-      "driver": "Max Verstappen",
-      "wins": 5
-    }
-  },
-  "rodriguez": {
-    "facts": [
-      "Autódromo Hermanos Rodríguez is located in Mexico City, Mexico.",
-      "It is the highest altitude circuit in Formula One at approximately 2,200 meters above sea level.",
-      "The thin air affects engine performance and aerodynamics significantly.",
-      "Features the famous Peraltada corner and a unique stadium section.",
-      "Named after the Rodriguez brothers, Pedro and Ricardo, both racing drivers who died in racing accidents."
-    ],
-    "length": "4.304 km",
-    "corners": 17,
-    "firstGP": "1963",
-    "totalRaces": 22,
-    "yearRange": "1963-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez"
-  },
-  "shanghai": {
-    "facts": [
-      "Shanghai International Circuit is located in Shanghai, China.",
-      "Features a unique snail-shaped Turn 1 and Turn 2 complex.",
-      "The circuit has a long back straight providing good overtaking opportunities.",
-      "Known for unpredictable weather conditions that can dramatically affect races.",
-      "The circuit was designed by Hermann Tilke and opened in 2004."
-    ],
-    "length": "5.451 km",
-    "corners": 16,
-    "firstGP": "2004",
-    "totalRaces": 18,
-    "yearRange": "2004-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Shanghai_International_Circuit"
-  },
-  "vegas": {
-    "facts": [
-      "The Las Vegas Strip Circuit runs through the heart of Las Vegas, Nevada.",
-      "Features the famous Las Vegas Strip as part of its layout.",
-      "It is a night race with spectacular neon-lit surroundings.",
-      "The circuit includes a long straight along the Strip exceeding 2 kilometers.",
-      "Made its debut on the Formula One calendar in 2023."
-    ],
-    "length": "6.120 km",
-    "corners": 17,
-    "firstGP": "2023",
-    "totalRaces": 1,
-    "yearRange": "2023-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Las_Vegas_Grand_Prix"
-  },
-  "villeneuve": {
-    "facts": [
-      "Circuit Gilles Villeneuve is located on Île Notre-Dame in Montreal, Quebec, Canada.",
-      "Named after Canadian Formula One legend Gilles Villeneuve.",
-      "The circuit is built on an artificial island in the St. Lawrence River.",
-      "Features the famous Wall of Champions which has caught out many top drivers over the years.",
-      "Known for its combination of long straights and chicanes that create good racing."
-    ],
-    "length": "4.361 km",
-    "corners": 14,
-    "firstGP": "1978",
-    "totalRaces": 42,
-    "yearRange": "1978-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Circuit_Gilles_Villeneuve"
-  },
-  "yas-marina": {
-    "facts": [
-      "Yas Marina Circuit is located on Yas Island in Abu Dhabi, United Arab Emirates.",
-      "The race is a twilight event, starting in daylight and finishing under floodlights.",
-      "Features the stunning Yas Hotel that straddles the track with an iconic design.",
-      "The circuit has a mix of tight technical sections and long straights.",
-      "Has often hosted the season-ending race with championship deciders."
-    ],
-    "length": "5.281 km",
-    "corners": 16,
-    "firstGP": "2009",
-    "totalRaces": 15,
-    "yearRange": "2009-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Yas_Marina_Circuit"
-  },
-  "zandvoort": {
-    "facts": [
-      "Circuit Zandvoort is located in the seaside resort town of Zandvoort, Netherlands.",
-      "The circuit returned to the Formula One calendar in 2021 after a long absence.",
-      "Features heavily banked corners that were added for the modern Formula One return.",
-      "Set in the sand dunes near the North Sea coast.",
-      "Known for passionate Dutch fans, particularly supporters of Max Verstappen."
-    ],
-    "length": "4.259 km",
-    "corners": 14,
-    "firstGP": "1952",
-    "totalRaces": 32,
-    "yearRange": "1952-2025",
-    "wikipediaUrl": "https://en.wikipedia.org/wiki/Circuit_Zandvoort"
+    "lapRecord": "1:20.989 (Michael Schumacher, 1993)",
+    "yearRange": "1969-1975"
   },
   "hockenheim": {
     "facts": [
-      "The Hockenheimring is located near the town of Hockenheim in Baden-Württemberg, Germany.",
-      "The circuit has a rich Formula One heritage dating back to 1970.",
-      "Features a stadium section with large grandstands providing excellent viewing.",
-      "The modern layout is significantly shorter than the original long, flat-out circuit through the forests.",
-      "Known for its mix of fast straights and technical corners."
+      "The man behind it is Ernst Christ, a young timekeeper who felt that a racing track should be built in his hometown of Hockenheim.",
+      "This first layout of the track was around twelve kilometres long and consisted of a large triangle-like section, a hairpin in the city and two straights connecting them.",
+      "This version of the circuit was just over seven and a half kilometres long and consisted of the original two long straights, with the Ostkurve in the forest and the original hairpin inside Hockenheim joining them together.",
+      "After Jim Clark was killed on 7 April 1968 in a Formula 2 racing accident, two fast chicanes were added and the track was lined with crash barriers in 1970.",
+      "A small memorial was placed near the first chicane (which was named after him), at the site of his accident.",
+      "In 1982, another chicane was added at the Ostkurve (east curve), after Patrick Depailler was killed there in 1980, and the first chicane was made slower as well.",
+      "For the 1992 German Grand Prix, the Ostkurve was changed yet again, from a quick left turn into a more complex right-left-right chicane, after Érik Comas crashed there in 1991.",
+      "The second chicane was renamed after Ayrton Senna, after his death at the 1994 San Marino Grand Prix."
     ],
-    "length": "4.574 km",
-    "corners": 17,
-    "firstGP": "1970",
-    "totalRaces": 35,
-    "yearRange": "1970-2025"
+    "corners": 9,
+    "firstGP": "1932",
+    "lapRecord": "2:13.300 (Bob Mc, 1957)",
+    "yearRange": "1977-2006"
   },
-  "ricard": {
+  "hockenheimring": {
     "facts": [
-      "Circuit Paul Ricard is located in Le Castellet, near Marseille, France.",
-      "The circuit is famous for its distinctive blue and red run-off areas.",
-      "Features the long Mistral straight with a heavy braking zone at the end.",
-      "Known for its technical layout and hot Mediterranean climate.",
-      "The circuit has extensive run-off areas making it one of the safest tracks in Formula One."
+      "The man behind it is Ernst Christ, a young timekeeper who felt that a racing track should be built in his hometown of Hockenheim.",
+      "This first layout of the track was around twelve kilometres long and consisted of a large triangle-like section, a hairpin in the city and two straights connecting them.",
+      "This version of the circuit was just over seven and a half kilometres long and consisted of the original two long straights, with the Ostkurve in the forest and the original hairpin inside Hockenheim joining them together.",
+      "After Jim Clark was killed on 7 April 1968 in a Formula 2 racing accident, two fast chicanes were added and the track was lined with crash barriers in 1970.",
+      "A small memorial was placed near the first chicane (which was named after him), at the site of his accident.",
+      "In 1982, another chicane was added at the Ostkurve (east curve), after Patrick Depailler was killed there in 1980, and the first chicane was made slower as well.",
+      "For the 1992 German Grand Prix, the Ostkurve was changed yet again, from a quick left turn into a more complex right-left-right chicane, after Érik Comas crashed there in 1991.",
+      "The second chicane was renamed after Ayrton Senna, after his death at the 1994 San Marino Grand Prix."
     ],
-    "length": "5.842 km",
-    "corners": 15,
-    "firstGP": "1971",
-    "totalRaces": 18,
-    "yearRange": "1971-2025"
+    "corners": 9,
+    "firstGP": "1932",
+    "lapRecord": "2:13.300 (Bob Mc, 1957)",
+    "yearRange": "1977-2006"
   },
-  "sochi": {
+  "hungaroring": {
     "facts": [
-      "Sochi Autodrom is located in the Sochi Olympic Park, Russia.",
-      "The circuit was built around the venues used for the 2014 Winter Olympics.",
-      "Features a long main straight and tight technical sections.",
-      "The circuit is a blend of street circuit and permanent track characteristics.",
-      "Hosted the Russian Grand Prix from 2014 until being removed from the calendar."
+      "Both Hungary's Zsolt Baumgartner and Poland's Robert Kubica made their debut on this track as the first F1 drivers of their countries.",
+      "The 2006 Hungarian Grand Prix was the first wet grand prix at the Hungaroring.",
+      "This saw the retirement of many drivers including championship rivals Fernando Alonso and Michael Schumacher and gave Jenson Button and the reborn Honda F1 team their first win.",
+      "Fernando Alonso also earned his first Grand Prix victory at this in 2003, declaring it his favourite track as a result.",
+      "The technical driving center of the Hungaroring held former racer Gerhard Berger's name from 1998 until 2005 but later it was changed to Allianz.",
+      "In 1986, it became the location of the first Formula One Grand Prix behind the Iron Curtain.",
+      "They wanted a street circuit similar to the Circuit de Monaco to be built in the Népliget – Budapest's largest park – but the government decided to build a new circuit just outside the city near a major highway.",
+      "It was built in eight months, less time than any other Formula One circuit."
     ],
-    "length": "5.848 km",
-    "corners": 18,
-    "firstGP": "2014",
-    "totalRaces": 8,
-    "yearRange": "2014-2021"
+    "corners": 16,
+    "firstGP": "1986",
+    "lapRecord": "1:30.149 (Nelson Piquet, 1987)",
+    "yearRange": "2011-2025"
+  },
+  "imola": {
+    "facts": []
+  },
+  "jeddah": {
+    "facts": [
+      "The Formula One track has a length of 6.174 km (3.836 mi), the third longest on the Formula One calendar after Spa-Francorchamps and Las Vegas.",
+      "It is also the fastest street course, with a record average speed of 254.6 km (158.2 mi) for the 2025 pole position.",
+      "Also in February 2025, Jeddah Corniche Circuit hosted the Saudi Arabian round of the Formula E championship instead of Riyadh Street Circuit.",
+      "The Jeddah Corniche Circuit (Arabic: حلبة كورنيش جدة) is a motor racing street circuit in Jeddah, Saudi Arabia."
+    ],
+    "corners": 12,
+    "firstGP": "2021",
+    "lapRecord": "1:16.986 (Gilles Magnus, 2022)",
+    "yearRange": "2022-2024"
+  },
+  "marina-bay": {
+    "facts": [
+      "The track is 4.927 km (3.061 mi) long in a harbourside location similar in style to the Circuit de Monaco and the Valencia Street Circuit.",
+      "The circuit was designed by KBR, and is a modification of the original one first proposed by Hermann Tilke.",
+      "The circuit held a unique record of having at least one safety car appearance in every Grand Prix until the 2024 race.",
+      "A temporary road leads from the pit area and under the Benjamin Sheares Bridge to Republic Boulevard and turns onto Raffles Boulevard.",
+      "It joins Raffles Avenue, then returning to the pit area via a second temporary road around the Singapore Flyer.",
+      "2008 World Champion Lewis Hamilton commented that it was twice as hard to negotiate as the more famous Monaco street circuit and unexpectedly physical – requiring double the amount of energy over a single lap as compared to the Monaco circuit.",
+      "Several drivers, including Sébastien Bourdais and Fernando Alonso, expressed their concern about the high and harsh kerbs at the chicane at turn 10 of the street circuit.",
+      "They also raised concerns that the bumps would pitch them into the wall on the outside of the corner."
+    ],
+    "corners": 23,
+    "firstGP": "2008",
+    "lapRecord": "1:45.599"
+  },
+  "marina_bay": {
+    "facts": [
+      "The track is 4.927 km (3.061 mi) long in a harbourside location similar in style to the Circuit de Monaco and the Valencia Street Circuit.",
+      "The circuit was designed by KBR, and is a modification of the original one first proposed by Hermann Tilke.",
+      "The circuit held a unique record of having at least one safety car appearance in every Grand Prix until the 2024 race.",
+      "A temporary road leads from the pit area and under the Benjamin Sheares Bridge to Republic Boulevard and turns onto Raffles Boulevard.",
+      "It joins Raffles Avenue, then returning to the pit area via a second temporary road around the Singapore Flyer.",
+      "2008 World Champion Lewis Hamilton commented that it was twice as hard to negotiate as the more famous Monaco street circuit and unexpectedly physical – requiring double the amount of energy over a single lap as compared to the Monaco circuit.",
+      "Several drivers, including Sébastien Bourdais and Fernando Alonso, expressed their concern about the high and harsh kerbs at the chicane at turn 10 of the street circuit.",
+      "They also raised concerns that the bumps would pitch them into the wall on the outside of the corner."
+    ],
+    "corners": 23,
+    "firstGP": "2008",
+    "lapRecord": "1:45.599"
+  },
+  "miami": {
+    "facts": [
+      "The Miami International Autodrome is a purpose-built temporary circuit around Hard Rock Stadium and its private facilities in Miami Gardens, Florida, United States.",
+      "The track is 3.363 mi (5.412 km) long and features 19 corners with an average in a Formula One car of around 139 mph (224 km/h) in qualifying.",
+      "The track was designed by Formula One track designers, Apex Circuit Design, for the Miami Grand Prix, which was added to the Formula One calendar for the 2022 World Championship.",
+      "The circuit is a temporary circuit, and does not use any public streets that are located around Hard Rock Stadium, though it does cross public roads.",
+      "Each year and a few weeks before the race weekend, the circuit and its safety features are assembled just for the race weekend."
+    ],
+    "corners": 13,
+    "firstGP": "2022",
+    "lapRecord": "1:36.999 (Massimo Perrina, 2025)"
+  },
+  "red-bull-ring": {
+    "facts": [
+      "Although narrow at 10 m (11 yd) in all places, the track was very fast, every corner was a fast sweeper and was taken in no lower than third gear in a five-speed gearbox and fourth in a six-speed gearbox.",
+      "It had noticeable changes in elevation during the course of a lap, 65 m (213 ft) from lowest to highest point.",
+      "Like most fast circuits it was a circuit hard on engines but more difficult on tyres, because of the speeds being so consistently high.",
+      "There were other testing corners such as Voest-Hugel, which was a flat-out 290 km/h (180 mph) right-hander that eventually led to the 240 km/h (150 mph) Sebring-Auspuff Kurve (this corner had many names over the years, Dr.",
+      "Tiroch and Glatz Kurve were others) which was an essential corner to get right because of the long straight afterwards that led to the Bosch Kurve.",
+      "Increasing speeds were also a concern at the Österreichring; during the final Grand Prix there in 1987 pole-sitter Nelson Piquet's time for the 5.942 km (3.692 mi) of 1:23.357 set an average speed record for the circuit of 256.621 km/h (159.457 mph).",
+      "At the time it was second only in F1 average speed to Keke Rosberg's 258.9 km/h (160.9 mph) pole lap of the Silverstone Circuit set during the 1985 British Grand Prix.",
+      "It was later shortened, rebuilt and renamed the A1-Ring (German: A Eins-Ring), and it hosted the Austrian Grand Prix again from 1997 to 2003."
+    ],
+    "corners": 16,
+    "firstGP": "1969",
+    "lapRecord": "1:35.810 (Jacky Ickx, 1974)",
+    "yearRange": "1970-1987"
+  },
+  "red_bull_ring": {
+    "facts": [
+      "Although narrow at 10 m (11 yd) in all places, the track was very fast, every corner was a fast sweeper and was taken in no lower than third gear in a five-speed gearbox and fourth in a six-speed gearbox.",
+      "It had noticeable changes in elevation during the course of a lap, 65 m (213 ft) from lowest to highest point.",
+      "Like most fast circuits it was a circuit hard on engines but more difficult on tyres, because of the speeds being so consistently high.",
+      "There were other testing corners such as Voest-Hugel, which was a flat-out 290 km/h (180 mph) right-hander that eventually led to the 240 km/h (150 mph) Sebring-Auspuff Kurve (this corner had many names over the years, Dr.",
+      "Tiroch and Glatz Kurve were others) which was an essential corner to get right because of the long straight afterwards that led to the Bosch Kurve.",
+      "Increasing speeds were also a concern at the Österreichring; during the final Grand Prix there in 1987 pole-sitter Nelson Piquet's time for the 5.942 km (3.692 mi) of 1:23.357 set an average speed record for the circuit of 256.621 km/h (159.457 mph).",
+      "At the time it was second only in F1 average speed to Keke Rosberg's 258.9 km/h (160.9 mph) pole lap of the Silverstone Circuit set during the 1985 British Grand Prix.",
+      "It was later shortened, rebuilt and renamed the A1-Ring (German: A Eins-Ring), and it hosted the Austrian Grand Prix again from 1997 to 2003."
+    ],
+    "corners": 16,
+    "firstGP": "1969",
+    "lapRecord": "1:35.810 (Jacky Ickx, 1974)",
+    "yearRange": "1970-1987"
+  },
+  "rodriguez": {
+    "facts": [
+      "It saw a record crowd of 402,413 people attend a round of the CART Championship in 2002.",
+      "For the 2007 race, the chicane was removed to increase passing opportunities down the front straight and into turn 1, and Juan Pablo Montoya from Bogotá, Colombia, won the race.",
+      "It also reduces the levels of aerodynamic drag that cars experience, meaning that higher downforce setups can be used with less impact on straight-line speed.",
+      "It was at this corner that the younger Rodríguez fatally crashed, due to suspension failure.",
+      "After the last F1 Mexican Grand Prix in 1992, a baseball stadium called the \"Foro\" was built on the inner part of this curve.",
+      "After the Peraltada comes the long 1.2 km (0.75 mi) front straight.",
+      "During the original turbo era in Formula One the faster cars were regularly clocking speeds of up to 330 km/h (205 mph) on the straight.",
+      "In the 2005 NASCAR Busch Series season, there was a chicane on the main straightaway to slow the cars down."
+    ],
+    "corners": 10,
+    "firstGP": "1959",
+    "lapRecord": "1:17.631 (Norm Hunter, 1982)",
+    "yearRange": "2015-2025"
+  },
+  "shanghai": {
+    "facts": [
+      "When it opened, visitors found a vast complex, dominated by the main grandstand and pit complex, which featured wing-like viewing platforms crossing the circuit at either end.",
+      "Paddock facilities were also unique – each of the F1 teams had its own building, arranged like pavilions in a lake to resemble the ancient Yu Garden in Shanghai.",
+      "The Shanghai International Circuit is the first in China to be purpose-built for Formula One and it hosts FIA Formula One World Championship Chinese Grand Prix every year since 2004.",
+      "The Shanghai International Circuit features over 10 top-tier domestic car racing events annually.",
+      "As a nationally recognized 4A-rated tourist attraction, the circuit features tourism, shopping, dining, entertainment, and sports.",
+      "There’s a unique start to the lap as the drivers fly into the ever-tightening Turns 1 and 2, before they dart left through 3 and 4.",
+      "The super-high g force Turns 7 and 8 are loved by the drivers, while the circuit also features one of the longest straights on the calendar, the 1.2 km (0.7 mi) stretch that separates turns 13 and 14.",
+      "Michael Schumacher's official race lap record of 1:32.238 has stood since 2004."
+    ],
+    "corners": 12,
+    "firstGP": "2004",
+    "lapRecord": "1:10.564 (Nick Cassidy, 2025)",
+    "yearRange": "2004-2019"
+  },
+  "vegas": {
+    "facts": [
+      "The event took place around the Las Vegas Strip on a brand-new street track.",
+      "It was the third Grand Prix in the United States on the 2023 calendar after the Miami and the United States Grands Prix, and marked the first time since 1982 that there were three races held in the United States in a Formula One season.",
+      "It is conducted as a night race on a temporary street circuit that includes parts of the Las Vegas Strip.",
+      "The first race was held on November 18, 2023.",
+      "With a length of 6.201 km (3.853 mi) and consisting of 17 corners, the Grand Prix lasts 50 laps, giving a race distance of 309.958 km (192.599 mi).",
+      "The circuit is located next to many of the most famous casinos, including a 1.9 km (1.2 mi) straight down the Las Vegas Strip, as well as two other lengthy straight sections."
+    ],
+    "yearRange": "1982-2025",
+    "mostWins": {
+      "driver": "Max Verstappen",
+      "wins": 2
+    }
+  },
+  "villeneuve": {
+    "facts": [
+      "Lawrence River most of which was originally built up for the Expo in 1967.",
+      "Almost half of the track—from the hairpin turn until after the pit area—runs alongside the Olympic Basin, a huge rectangular basin which was created for the rowing and canoeing events of Montréal's 1976 Summer Olympics.",
+      "A particularly famous part of the circuit is the wall on the outside of the exit of the final chicane before the start/finish straight.",
+      "For the first few years of its existence, the track consisted of technical, medium speed chicanes and a relatively low overall lap speed.",
+      "However, over the years the circuit has transformed into a power track, with straight line speed being very much a priority.",
+      "Between 1986 and 1988 (with a one-year hiatus occurring in 1987), the pitlane and start-finish straight were relocated from the hairpin to the exit of the fast right-left chicane, which became the final corner.",
+      "After the fatal crashes of Roland Ratzenberger and Ayrton Senna at Imola earlier in the year, in 1994 a chicane was inserted between the Casino corner and the hairpin to decrease top speed.",
+      "The 1996 race saw both the chicane and the Casino corner removed and the layout changed; the run from the hairpin at the bottom of the circuit was turned into a straight."
+    ],
+    "corners": 19,
+    "firstGP": "1978",
+    "lapRecord": "1:25.443 (Nelson Piquet, 1986)",
+    "yearRange": "1986-1988"
+  },
+  "yas-marina": {
+    "facts": [
+      "The circuit was designed by Hermann Tilke.",
+      "Yas Marina was the second of four Formula One tracks in the Middle East, with the first being in Bahrain and subsequent tracks in Qatar and Saudi Arabia.",
+      "This changed when the previous turns 4, 5, and 6 were redesigned and the previous turns 11, 12, and 13 were also reconfigured in time for the 2021 Abu Dhabi Grand Prix.",
+      "Bruno Senna was the first driver to complete a test run on the circuit.",
+      "GP3 visited Abu Dhabi for the first time at the end of the 2013 season.",
+      "Although the pit exit remained free of incidents for the early practice sessions, Fisichella claimed that it was both very difficult and dangerous.",
+      "Kimi Räikkönen notoriously gave his thoughts on the circuit, stating \"The first few turns are quite good, but the rest of it is shit\".",
+      "Turns 4, 5, and 6 were replaced by a single, less severe hairpin, turns 11 through 14 were replaced by a sweeping banked curve, and turns 18 through 20 were made less tight to allow more speed to be carried through them."
+    ],
+    "corners": 12,
+    "firstGP": "2009",
+    "lapRecord": "0:59.572 (Jonathan Aberdein, 2017)",
+    "yearRange": "2010-2012"
+  },
+  "yas_marina": {
+    "facts": [
+      "The circuit was designed by Hermann Tilke.",
+      "Yas Marina was the second of four Formula One tracks in the Middle East, with the first being in Bahrain and subsequent tracks in Qatar and Saudi Arabia.",
+      "This changed when the previous turns 4, 5, and 6 were redesigned and the previous turns 11, 12, and 13 were also reconfigured in time for the 2021 Abu Dhabi Grand Prix.",
+      "Bruno Senna was the first driver to complete a test run on the circuit.",
+      "GP3 visited Abu Dhabi for the first time at the end of the 2013 season.",
+      "Although the pit exit remained free of incidents for the early practice sessions, Fisichella claimed that it was both very difficult and dangerous.",
+      "Kimi Räikkönen notoriously gave his thoughts on the circuit, stating \"The first few turns are quite good, but the rest of it is shit\".",
+      "Turns 4, 5, and 6 were replaced by a single, less severe hairpin, turns 11 through 14 were replaced by a sweeping banked curve, and turns 18 through 20 were made less tight to allow more speed to be carried through them."
+    ],
+    "corners": 12,
+    "firstGP": "2009",
+    "lapRecord": "0:59.572 (Jonathan Aberdein, 2017)",
+    "yearRange": "2010-2012"
+  },
+  "zandvoort": {
+    "facts": [
+      "However, a permanent race track was not constructed until after the war, using communications roads built by the occupying German army.",
+      "The first race on the circuit, the Prijs van Zandvoort, took place on 7 August 1948.",
+      "The 1952 race was the first to be run as a round of the World Championship, albeit to Formula Two regulations rather than Formula One regulations like all the European rounds of the championship that year; a similar situation also applied to the 1953.",
+      "There was no Dutch Grand Prix in 1954, 1956 or 1957, but 1955 saw the first true Formula One race as part of the Drivers' Championship.",
+      "However, the race returned to its historical home in 2009.",
+      "Circuit Park Zandvoort played host to the first race in the 2006/07 season of A1 Grand Prix from 29 September–1 October 2006.",
+      "On 21 August 2008, the official A1GP site reported that the 2008/09 season's first race has moved from the Mugello Circuit, Italy to Zandvoort on 4–5 October 2008 due to the delay in the building the new chassis for the new race cars.",
+      "Tarzanbocht is the most famous corner in the circuit."
+    ],
+    "corners": 19,
+    "firstGP": "1948",
+    "lapRecord": "1:19.23 (Jacky Ickx, 1970)",
+    "yearRange": "1985-2025"
   },
   "sakhir": {
     "facts": [
-      "The Sakhir outer layout is an alternative configuration of the Bahrain International Circuit.",
-      "This layout was used for the 2020 Sakhir Grand Prix.",
-      "It produces one of the fastest lap times in Formula One history.",
-      "Features primarily low-speed corners with long straights.",
-      "The outer circuit configuration is significantly different from the standard Bahrain GP layout."
+      "In 2011 the circuit was scheduled to be the first GP of the season.",
+      "2014 saw the track host its first ever Grand Prix under lights, as the race was scheduled as a night race to celebrate the tenth year of Formula 1 at the circuit.",
+      "The 2004 Grand Prix was the first  Formula One race held in the Middle East.",
+      "In the past the circuit has hosted the FIA GT Championship, Speedcar Series, Australian V8 Supercars, GP2 Asia Series, and a one-off Bahrain Superprix involving Formula Three cars, following on from the collapsed Korea Super Prix.",
+      "The first ever Formula BMW World Final took place in Bahrain."
     ],
-    "length": "3.543 km",
-    "corners": 11,
-    "firstGP": "2020",
-    "totalRaces": 1,
-    "yearRange": "2020-2020"
+    "corners": 15,
+    "firstGP": "2004",
+    "lapRecord": "1:30.252 (Michael Schumacher, 2004)",
+    "yearRange": "2004-2009"
   },
   "saudi-arabia": {
     "facts": [
-      "The Jeddah Corniche Circuit is a street circuit in Jeddah, Saudi Arabia.",
-      "It is the fastest street circuit in Formula One with incredibly high average speeds.",
-      "Features blind corners and challenging high-speed sections.",
-      "Runs along the Red Sea waterfront creating a stunning backdrop.",
-      "The circuit is lit by floodlights allowing for night racing."
+      "The Formula One track has a length of 6.174 km (3.836 mi), the third longest on the Formula One calendar after Spa-Francorchamps and Las Vegas.",
+      "It is also the fastest street course, with a record average speed of 254.6 km (158.2 mi) for the 2025 pole position.",
+      "Also in February 2025, Jeddah Corniche Circuit hosted the Saudi Arabian round of the Formula E championship instead of Riyadh Street Circuit.",
+      "The Jeddah Corniche Circuit (Arabic: حلبة كورنيش جدة) is a motor racing street circuit in Jeddah, Saudi Arabia."
     ],
-    "length": "6.174 km",
-    "corners": 27,
+    "corners": 12,
     "firstGP": "2021",
-    "totalRaces": 3,
-    "yearRange": "2021-2025"
+    "lapRecord": "1:16.986 (Gilles Magnus, 2022)",
+    "yearRange": "2022-2024"
+  },
+  "ricard": {
+    "facts": [
+      "The original track was dominated by the 1.8 km (1.1 mi) long Mistral Straight that is followed by the high-speed right hand Signes corner.",
+      "The long main straight and other fast sections made the track very hard on engines as they ran at full revs for extended spells.",
+      "The Honda powered FW10 holds the race lap record for the original circuit when Mansell's teammate Keke Rosberg recorded a time of 1:39.914 during the 1985 French Grand Prix.",
+      "During qualifying for the 1985 race, Swiss driver Marc Surer clocked what was at the time the highest speed recorded by a Formula One car on the Mistral when he pushed his turbocharged, 1,000 bhp (746 kW; 1,014 PS) Brabham-BMW to 335 km/h (208 mph).",
+      "The circuit hosted the Formula One French Grand Prix on many occasions, the first of which was the 1971 French Grand Prix.",
+      "In 1986, Brabham Formula One driver Elio de Angelis was killed in a testing accident at the fast first turn after the rear wing of his Brabham BT55 had broken off.",
+      "The length of the Mistral Straight was reduced from 1.8 km (1.1 mi) in length to just over 1.0 km (0.62 mi), and the fast sweeping Verrerie curves where de Angelis had crashed were bypassed.",
+      "Effectively, after the start, instead of heading into the left hand Verrerie sweeper, cars now braked hard and turned sharp right into a short run that connected the pit straight to the Mistral."
+    ],
+    "corners": 9,
+    "firstGP": "1970",
+    "lapRecord": "1:15.800 (Pierre Jabouille, 1974)",
+    "yearRange": "1971-2022"
+  },
+  "sochi": {
+    "facts": []
   }
 }
